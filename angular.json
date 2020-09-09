@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DoctorsManagementApp"
+    }
+  },
+  "defaultProject": "DoctorsManagementApp",
+  "cli": {
+    "analytics": false
+  }
 }

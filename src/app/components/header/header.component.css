@@ -1,0 +1,4 @@
+ul.nav li.dropdown:hover ul.dropdown-menu {
+    position: relative;
+    display: none;
+}

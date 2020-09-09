@@ -1,0 +1,1 @@
+export const baseURL = 'https://doctors-management-app.herokuapp.com/';
