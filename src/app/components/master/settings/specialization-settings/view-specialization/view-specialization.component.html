@@ -1,0 +1,19 @@
+<div class="main-wrapper">
+    <app-header></app-header>
+    <app-sidebar-settings></app-sidebar-settings>
+
+    <div class="page-wrapper">
+        <h2>Specialization Data</h2>
+        <div *ngIf="undefined === getData">Loading...</div>
+        <div *ngIf="undefined !== getData">
+        <ul>
+            <li>ID : {{getData._id}}</li>
+            <li>Specialization : {{getData.specialization}}</li>
+            <li>Condition : {{getData.condition}}</li>
+            <li>Status : {{getData.status}}</li>
+            <li>Created On : {{getData.createdAt | date:'medium'}}</li>
+            <li>Updated On : {{getData.updatedAt | date:'medium'}}</li>
+        </ul>
+        </div>
+    </div>
+</div>

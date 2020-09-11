@@ -12,25 +12,50 @@ import { AuthGuard } from './services/auth/auth.guard';
 import { LocationSettingsComponent } from './components/master/settings/location-settings/location-settings.component';
 import { SpecializationSettingsComponent } from './components/master/settings/specialization-settings/specialization-settings.component';
 import { ConditionSettingsComponent } from './components/master/settings/condition-settings/condition-settings.component';
-import { TimeSettingsComponent } from './components/master/settings/time-settings/time-settings.component';
+import { AddSpecializationComponent } from './components/master/settings/specialization-settings/add-specialization/add-specialization.component';
+import { ViewSpecializationComponent } from './components/master/settings/specialization-settings/view-specialization/view-specialization.component';
+import { EditSpecializationComponent } from './components/master/settings/specialization-settings/edit-specialization/edit-specialization.component';
+import { AddConditionComponent } from './components/master/settings/condition-settings/add-condition/add-condition.component';
+import { ViewConditionComponent } from './components/master/settings/condition-settings/view-condition/view-condition.component';
+import { EditConditionComponent } from './components/master/settings/condition-settings/edit-condition/edit-condition.component';
+import { TimingSettingsComponent } from './components/master/settings/timing-settings/timing-settings.component';
+import { AddTimingComponent } from './components/master/settings/timing-settings/add-timing/add-timing.component';
+import { ViewTimingComponent } from './components/master/settings/timing-settings/view-timing/view-timing.component';
+import { EditTimingComponent } from './components/master/settings/timing-settings/edit-timing/edit-timing.component';
 
 const routes: Routes = [
   {path : 'login', component : LoginComponent},
 
   { path: 'master',  canActivate: [AuthGuard],  children : [
+    {path: '', component: DashboardComponent},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'clinic', component: AssetManagementComponent},
     {path: 'doctor', component: DoctorComponent},
     {path: 'receptionist', component: ReceptionistComponent},
     {path: 'room', component: RoomComponent},
     {path: 'settings', children : [
+      {path: '', component: LocationSettingsComponent},
       {path: 'location', component: LocationSettingsComponent},
-      {path: 'specialization', component: SpecializationSettingsComponent},
-      {path: 'condition', component: ConditionSettingsComponent},
-      {path: 'timing', component: TimeSettingsComponent},
+      {path: 'specialization' , children : [
+        {path: '', component: SpecializationSettingsComponent},
+        {path: 'add', component: AddSpecializationComponent},
+        {path: 'view/:id', component: ViewSpecializationComponent},
+        {path: 'edit/:id', component: EditSpecializationComponent},
+      ]},
+      {path: 'condition' , children : [
+        {path: '', component: ConditionSettingsComponent},
+        {path: 'add', component: AddConditionComponent},
+        {path: 'view/:id', component: ViewConditionComponent},
+        {path: 'edit/:id', component: EditConditionComponent},
+      ]},
+      {path: 'timing', children : [
+        {path: '', component: TimingSettingsComponent},
+        {path: 'add', component: AddTimingComponent},
+        {path: 'view/:id', component: ViewTimingComponent},
+        {path: 'edit/:id', component: EditTimingComponent},
+      ]},
     ]}
   ] },
-  // { path : '', redirectTo: 'master', pathMatch : 'full'}
 ];
 
 @NgModule({

@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { SpecializationService } from 'src/app/services/master/specialization/specialization.service';
+import { TimingService } from 'src/app/services/master/timing/timing.service';
 
 @Component({
-  selector: 'app-specialization-settings',
-  templateUrl: './specialization-settings.component.html',
-  styleUrls: ['./specialization-settings.component.css']
+  selector: 'app-timing-settings',
+  templateUrl: './timing-settings.component.html',
+  styleUrls: ['./timing-settings.component.css']
 })
-export class SpecializationSettingsComponent implements OnInit {
+export class TimingSettingsComponent implements OnInit {
+
   getAll;
   getId;
 
-  constructor(private service: SpecializationService) {
+  constructor(private service: TimingService) {
    }
 
   ngOnInit(): void {
@@ -35,4 +36,5 @@ export class SpecializationSettingsComponent implements OnInit {
       this.getId = undefined;
     });
   }
+
 }

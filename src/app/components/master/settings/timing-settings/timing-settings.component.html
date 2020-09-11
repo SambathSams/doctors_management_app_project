@@ -6,11 +6,11 @@
         <div class="content">
             <div class="row">
                 <div class="col-sm-4 col-3">
-                    <h4 class="page-title">Condition</h4>
+                    <h4 class="page-title">Timing</h4>
                 </div>
                 <div class="col-sm-8 col-9 text-right m-b-20">
                     <a routerLink="add" routerLinkActive="active" class="btn btn btn-primary btn-rounded float-right"><i
-                            class="fa fa-plus"></i> Add Condition</a>
+                            class="fa fa-plus"></i> Add Time</a>
                 </div>
             </div>
             <div class="row">
@@ -21,16 +21,18 @@
                             <table class="table table-border table-striped custom-table datatable mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Condition</th>
-                                        <th>Added On</th>
+                                        <th>Room Number</th>
+                                        <th>Clinic Timing</th>
+                                        <th>Room Timing</th>
                                         <th>Status</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let getOne of getAll">
-                                        <td>{{getOne.healthIssues}}</td>
-                                        <td>{{getOne.createdAt | date:'medium'}} </td>
+                                        <td>{{getOne.roomNumber}}</td>
+                                        <td>{{getOne.clinicStartTime | date:'hh:mm a'}} to {{getOne.clinicEndTime | date:'hh:mm a'}}</td>
+                                        <td>{{getOne.roomStartTime | date:'hh:mm a'}} to {{getOne.roomEndTime | date:'hh:mm a'}}</td>
                                         <td>{{getOne.status}}</td>
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
@@ -72,3 +74,4 @@
             </div>
         </div>
     </div>
+</div>
