@@ -64,6 +64,7 @@ const routes: Routes = [
       ]},
     ]}
   ] },
+  { path: '', redirectTo: 'master', pathMatch: 'full' }
 ];
 
 @NgModule({
