@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { TimingService } from 'src/app/services/master/timing/timing.service';
+import { LocationService } from 'src/app/services/master/location/location.service';
 
 @Component({
-  selector: 'app-edit-timing',
-  templateUrl: './edit-timing.component.html',
-  styleUrls: ['./edit-timing.component.css']
+  selector: 'app-edit-location',
+  templateUrl: './edit-location.component.html',
+  styleUrls: ['./edit-location.component.css']
 })
-export class EditTimingComponent implements OnInit {
+export class EditLocationComponent implements OnInit {
 
   submitForm: FormGroup;
   returnUrl: string;
@@ -17,18 +17,17 @@ export class EditTimingComponent implements OnInit {
   id: string;
   getData;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private service: TimingService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: LocationService) { }
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
-      roomNumber: ['', Validators.required],
-      clinicStartTime: ['09:00', Validators.required],
-      clinicEndTime: ['18:00', Validators.required],
-      roomStartTime: ['09:00', Validators.required],
-      roomEndTime: ['18:00', Validators.required],
-      status: ['', Validators.required]
+      state: ['', Validators.required],
+      city: ['', Validators.required],
+      pincode: ['', Validators.required],
+      address: ['', Validators.required],
+      status: ['', Validators.required],
     });
-    this.returnUrl = '/master/settings/timing';
+    this.returnUrl = '/master/settings/location';
     this.id = this.router.url.split('/').pop();
     this.getByIdData(this.id);
   }
@@ -43,18 +42,17 @@ export class EditTimingComponent implements OnInit {
         this.getData = res.data;
         console.log(res.data);
         this.submitForm = this.formBuilder.group({
-          roomNumber: [res.data.roomNumber, Validators.required],
-          clinicStartTime: [res.data.clinicStartTime, Validators.required],
-          clinicEndTime: [res.data.clinicEndTime, Validators.required],
-          roomStartTime: [res.data.roomStartTime, Validators.required],
-          roomEndTime: [res.data.roomEndTime, Validators.required],
-          status: [res.data.status + '', Validators.required]
+          state: res.data.state,
+      city: res.data.city,
+      pincode: res.data.pincode,
+      address: res.data.address,
+      status: res.data.status + '',
         });
       });
   }
 
   // tslint:disable-next-line: typedef
-  updateById(id, data){
+  updateByIdData(id, data){
     if (this.submitForm.invalid) {
           this.message = 'Invalid form submission.';
           return;

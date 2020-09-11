@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewTimingComponent } from './view-timing.component';
+import { EditLocationComponent } from './edit-location.component';
 
-describe('ViewTimingComponent', () => {
-  let component: ViewTimingComponent;
-  let fixture: ComponentFixture<ViewTimingComponent>;
+describe('EditLocationComponent', () => {
+  let component: EditLocationComponent;
+  let fixture: ComponentFixture<EditLocationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewTimingComponent ]
+      declarations: [ EditLocationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewTimingComponent);
+    fixture = TestBed.createComponent(EditLocationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

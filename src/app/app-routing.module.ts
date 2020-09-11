@@ -22,6 +22,9 @@ import { TimingSettingsComponent } from './components/master/settings/timing-set
 import { AddTimingComponent } from './components/master/settings/timing-settings/add-timing/add-timing.component';
 import { ViewTimingComponent } from './components/master/settings/timing-settings/view-timing/view-timing.component';
 import { EditTimingComponent } from './components/master/settings/timing-settings/edit-timing/edit-timing.component';
+import { AddLocationComponent } from './components/master/settings/location-settings/add-location/add-location.component';
+import { EditLocationComponent } from './components/master/settings/location-settings/edit-location/edit-location.component';
+import { ViewLocationComponent } from './components/master/settings/location-settings/view-location/view-location.component';
 
 const routes: Routes = [
   {path : 'login', component : LoginComponent},
@@ -35,7 +38,12 @@ const routes: Routes = [
     {path: 'room', component: RoomComponent},
     {path: 'settings', children : [
       {path: '', component: LocationSettingsComponent},
-      {path: 'location', component: LocationSettingsComponent},
+      {path: 'location', children : [
+        {path: '', component: LocationSettingsComponent},
+        {path: 'add', component: AddLocationComponent},
+        {path: 'view/:id', component: ViewLocationComponent},
+        {path: 'edit/:id', component: EditLocationComponent},
+      ]},
       {path: 'specialization' , children : [
         {path: '', component: SpecializationSettingsComponent},
         {path: 'add', component: AddSpecializationComponent},

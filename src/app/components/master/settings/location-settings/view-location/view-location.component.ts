@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { TimingService } from 'src/app/services/master/timing/timing.service';
+import { LocationService } from 'src/app/services/master/location/location.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-view-timing',
-  templateUrl: './view-timing.component.html',
-  styleUrls: ['./view-timing.component.css']
+  selector: 'app-view-location',
+  templateUrl: './view-location.component.html',
+  styleUrls: ['./view-location.component.css']
 })
-export class ViewTimingComponent implements OnInit {
+export class ViewLocationComponent implements OnInit {
 
   getData;
-  constructor(private service: TimingService, private router: Router) {
+  constructor(private service: LocationService, private router: Router) {
   }
 
   ngOnInit(): void {

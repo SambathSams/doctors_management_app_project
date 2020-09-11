@@ -49,5 +49,4 @@ export class AddTimingComponent implements OnInit {
       });
     }
   }
-
 }

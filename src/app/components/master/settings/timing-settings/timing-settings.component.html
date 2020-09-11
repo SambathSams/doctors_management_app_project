@@ -15,7 +15,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                        <div *ngIf="undefined === getAll">Loading...</div>
+                    <div class="spinner-border text-primary" role="status" *ngIf="undefined === getAll">
+                        <span class="sr-only">Loading...</span>
+                    </div>
                     <div *ngIf="undefined !== getAll">
                         <div class="table-responsive">
                             <table class="table table-border table-striped custom-table datatable mb-0">
@@ -31,8 +33,8 @@
                                 <tbody>
                                     <tr *ngFor="let getOne of getAll">
                                         <td>{{getOne.roomNumber}}</td>
-                                        <td>{{getOne.clinicStartTime | date:'hh:mm a'}} to {{getOne.clinicEndTime | date:'hh:mm a'}}</td>
-                                        <td>{{getOne.roomStartTime | date:'hh:mm a'}} to {{getOne.roomEndTime | date:'hh:mm a'}}</td>
+                                        <td>{{getOne.clinicStartTime}} to {{getOne.clinicEndTime}}</td>
+                                        <td>{{getOne.roomStartTime}} to {{getOne.roomEndTime}}</td>
                                         <td>{{getOne.status}}</td>
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,9 @@ import { AddTimingComponent } from './components/master/settings/timing-settings
 import { EditTimingComponent } from './components/master/settings/timing-settings/edit-timing/edit-timing.component';
 import { ViewTimingComponent } from './components/master/settings/timing-settings/view-timing/view-timing.component';
 import { TimingSettingsComponent } from './components/master/settings/timing-settings/timing-settings.component';
+import { AddLocationComponent } from './components/master/settings/location-settings/add-location/add-location.component';
+import { EditLocationComponent } from './components/master/settings/location-settings/edit-location/edit-location.component';
+import { ViewLocationComponent } from './components/master/settings/location-settings/view-location/view-location.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,10 @@ import { TimingSettingsComponent } from './components/master/settings/timing-set
     AddTimingComponent,
     EditTimingComponent,
     ViewTimingComponent,
-    TimingSettingsComponent
+    TimingSettingsComponent,
+    AddLocationComponent,
+    EditLocationComponent,
+    ViewLocationComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +75,8 @@ import { TimingSettingsComponent } from './components/master/settings/timing-set
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    GooglePlaceModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
