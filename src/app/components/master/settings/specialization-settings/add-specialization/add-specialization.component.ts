@@ -15,6 +15,7 @@ export class AddSpecializationComponent implements OnInit {
   submitForm: FormGroup;
   returnUrl: string;
   message: string;
+  isSubmitted = false;
 
   ngOnInit(): void {
     // this.submitForm = new FormGroup({
@@ -38,11 +39,13 @@ export class AddSpecializationComponent implements OnInit {
       return;
     }
     else{
+      this.isSubmitted = true;
       this.service.create(data).subscribe(response => {
         if (response.data){
           this.router.navigate([this.returnUrl]);
         }
         else{
+          this.isSubmitted = false;
           this.message = 'Failed to submit the form.';
         }
       });

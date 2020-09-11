@@ -17,6 +17,7 @@ export class EditConditionComponent implements OnInit {
   message: string;
   id: string;
   getData;
+  isSubmitted = false;
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
@@ -37,23 +38,25 @@ export class EditConditionComponent implements OnInit {
         this.getData = res.data;
         console.log(res.data);
         this.submitForm = this.formBuilder.group({
-          healthIssues: ['', Validators.required]
+          healthIssues: res.data.healthIssues
         });
       });
   }
 
   // tslint:disable-next-line: typedef
-  updateSpecialization(id, data){
+  updateByIdData(id, data){
     if (this.submitForm.invalid) {
           this.message = 'Invalid form submission.';
           return;
         }
         else{
+          this.isSubmitted = true;
           this.service.updateById(id, data).subscribe(response => {
             if (response.data){
               this.router.navigate([this.returnUrl]);
             }
             else{
+              this.isSubmitted = false;
               this.message = 'Failed to submit the form.';
             }
           });

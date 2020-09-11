@@ -16,6 +16,7 @@ export class EditTimingComponent implements OnInit {
   message: string;
   id: string;
   getData;
+  isSubmitted = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private service: TimingService) { }
 
@@ -60,11 +61,13 @@ export class EditTimingComponent implements OnInit {
           return;
         }
         else{
+          this.isSubmitted = true;
           this.service.updateById(id, data).subscribe(response => {
             if (response.data){
               this.router.navigate([this.returnUrl]);
             }
             else{
+              this.isSubmitted = false;
               this.message = 'Failed to submit the form.';
             }
           });

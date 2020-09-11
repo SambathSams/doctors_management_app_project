@@ -4,7 +4,9 @@
     <div class="page-wrapper">
         
             <div class="content">
-                <div *ngIf="undefined === getData">Loading...</div>
+                <div class="spinner-border text-primary" role="status" *ngIf="undefined === getData">
+                    <span class="sr-only">Loading...</span>
+                </div>
         <div *ngIf="undefined !== getData">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
@@ -15,7 +17,7 @@
                     <div class="col-lg-8 offset-lg-2">
                         <p *ngIf="message" class="text-center error">{{message}}</p>
                         <form class="form" [formGroup]="submitForm"
-                            (ngSubmit)="updateSpecialization(id, submitForm.value)">
+                            (ngSubmit)="updateByIdData(id, submitForm.value)">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -36,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="m-t-20 text-center">
-                                <button [disabled]="submitForm.invalid"
+                                <button [disabled]="isSubmitted === true || submitForm.invalid"
                                     class="btn btn-primary submit-btn">Update</button>
                             </div>
                         </form>

@@ -4,7 +4,9 @@
     <div class="page-wrapper">
         
             <div class="content">
-                <div *ngIf="undefined === getData">Loading...</div>
+                <div class="spinner-border text-primary" role="status" *ngIf="undefined === getData">
+                    <span class="sr-only">Loading...</span>
+                </div>
         <div *ngIf="undefined !== getData">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">

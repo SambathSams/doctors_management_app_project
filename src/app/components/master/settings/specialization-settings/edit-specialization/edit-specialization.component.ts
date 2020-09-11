@@ -15,6 +15,7 @@ export class EditSpecializationComponent implements OnInit {
   message: string;
   id: string;
   getData;
+  isSubmitted = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private service: SpecializationService) { }
 
@@ -46,17 +47,19 @@ export class EditSpecializationComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  updateSpecialization(id, data){
+  updateByIdData(id, data){
     if (this.submitForm.invalid) {
           this.message = 'Invalid form submission.';
           return;
         }
         else{
+          this.isSubmitted = true;
           this.service.updateById(id, data).subscribe(response => {
             if (response.data){
               this.router.navigate([this.returnUrl]);
             }
             else{
+              this.isSubmitted = false;
               this.message = 'Failed to submit the form.';
             }
           });
