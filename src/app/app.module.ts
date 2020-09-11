@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -74,9 +72,7 @@ import { ViewLocationComponent } from './components/master/settings/location-set
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    NgxSpinnerModule,
-    GooglePlaceModule
+    HttpClientModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
