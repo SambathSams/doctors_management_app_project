@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomService } from 'src/app/services/master/room/room.service';
+import { ClinicService } from 'src/app/services/master/clinic/clinic.service';
 
 @Component({
-  selector: 'app-room',
-  templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css']
+  selector: 'app-clinic',
+  templateUrl: './clinic.component.html',
+  styleUrls: ['./clinic.component.css']
 })
-export class RoomComponent implements OnInit {
+export class ClinicComponent implements OnInit {
 
   getAll;
   getId;
 
-  constructor(private service: RoomService) {
+  constructor(private service: ClinicService) {
    }
 
   ngOnInit(): void {
@@ -27,7 +27,6 @@ export class RoomComponent implements OnInit {
   getAllData() {
     this.service.getAll().subscribe(res => {
         this.getAll = res.data;
-        console.log(res.data);
       });
   }
 

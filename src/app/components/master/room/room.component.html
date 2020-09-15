@@ -7,33 +7,29 @@
                 <div class="col-sm-4 col-3">
                     <h4 class="page-title">Rooms</h4>
                 </div>
-                <div class="col-sm-8 col-9 text-right m-b-20">
-                    <a href="add-employee.html" class="btn btn-primary float-right btn-rounded"><i
-                            class="fa fa-plus"></i> Add Room</a>
-                </div>
             </div>
-            <div class="row filter-row">
+            <!-- <div class="row filter-row">
                 <div class="col">
                     <div class="form-group form-focus">
-                        <label class="focus-label">Doctor</label>
+                        <label class="focus-label">Doctor Name</label>
                         <input type="text" class="form-control floating">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group form-focus">
-                        <label class="focus-label">Clinic</label>
+                        <label class="focus-label">Clinic Name</label>
                         <input type="text" class="form-control floating">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group form-focus">
-                        <label class="focus-label">Room</label>
+                        <label class="focus-label">Room Number</label>
                         <input type="text" class="form-control floating">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group form-focus select-focus">
-                        <label class="focus-label">Status</label>
+                        <label class="focus-label">Paid Status</label>
                         <select class="select floating">
                             <option>None</option>
                             <option>Paid</option>
@@ -44,49 +40,53 @@
                 <div class="col">
                     <a href="#" class="btn btn-success btn-block"> Search </a>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-md-12">
+                    <div class="spinner-border text-primary" role="status" *ngIf="undefined === getAll">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div *ngIf="undefined !== getAll">
                     <div class="table-responsive">
                         <table class="table table-striped custom-table">
                             <thead>
                                 <tr>
                                     <!-- <th style="min-width:200px;">Name</th> -->
-                                    <th>Doctor</th>
-                                    <th>Clinic</th>
+                                    <th>Doctor Name</th>
+                                    <th>Clinic Name</th>
                                     <th>Room Number</th>
                                     <th>Rent per month</th>
                                     <!-- <th style="min-width: 110px;">Join Date</th> -->
                                     <th>State</th>
                                     <th>Last Paid On</th>
-                                    <th>Status</th>
+                                    <th>Paid Status</th>
                                     <th class="text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle"
-                                            alt="">
-                                        <h2>Albina Simonis</h2>
-                                    </td>
-                                    <td>Gopal Medicals</td>
-                                    <td>1001</td>
-                                    <td>10000</td>
-                                    <td>Tamilnadu</td>
-                                    <td>7/9/2020</td>
-                                    <td>
+                                <tr *ngFor="let getOne of getAll">
+                                    <td>{{getOne.doctorData.doctorName || '-'}}</td>
+                                    <td>{{getOne.clinicData.clinicName}}</td>
+                                    <td>{{getOne.roomNumber}}</td>
+                                    <td>{{getOne.rentPerMonth}}</td>
+                                    <td>{{getOne.clinicData.state}}</td>
+                                    <td>{{getOne.paidOn | date:'medium'}}</td>
+                                    <td>{{getOne.paidStatus}}</td>
+                                    <!-- <td>
                                         <span class="custom-badge status-green">Paid</span>
-                                    </td>
+                                    </td> -->
                                     <td class="text-right">
                                         <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
                                                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="edit-employee.html"><i
+                                                <a class="dropdown-item" routerLink="view/{{getOne._id}}" routerLinkActive="active"><i
+                                                    class="fa fa-eye"></i> View</a>
+                                                <a class="dropdown-item" routerLink="edit/{{getOne._id}}" routerLinkActive="active"><i
                                                         class="fa fa-pencil m-r-5"></i> Edit</a>
                                                 <a class="dropdown-item" href="#" data-toggle="modal"
-                                                    data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i>
+                                                    data-target="#delete" (click)="getIdData(getOne._id)"><i
+                                                        class="fa fa-trash-o m-r-5"></i>
                                                     Delete</a>
                                             </div>
                                         </div>
@@ -94,6 +94,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
                     </div>
                 </div>
             </div>

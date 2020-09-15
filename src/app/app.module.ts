@@ -6,8 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { RentManagementComponent } from './components/master/rent-management/rent-management.component';
-import { AssetManagementComponent } from './components/master/asset-management/asset-management.component';
 import { DashboardComponent } from './components/master/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -35,13 +33,17 @@ import { TimingSettingsComponent } from './components/master/settings/timing-set
 import { AddLocationComponent } from './components/master/settings/location-settings/add-location/add-location.component';
 import { EditLocationComponent } from './components/master/settings/location-settings/edit-location/edit-location.component';
 import { ViewLocationComponent } from './components/master/settings/location-settings/view-location/view-location.component';
+import { ClinicComponent } from './components/master/clinic/clinic.component';
+import { AddClinicComponent } from './components/master/clinic/add-clinic/add-clinic.component';
+import { ViewClinicComponent } from './components/master/clinic/view-clinic/view-clinic.component';
+import { EditClinicComponent } from './components/master/clinic/edit-clinic/edit-clinic.component';
+import { EditRoomComponent } from './components/master/room/edit-room/edit-room.component';
+import { ViewRoomComponent } from './components/master/room/view-room/view-room.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RentManagementComponent,
-    AssetManagementComponent,
     DashboardComponent,
     HeaderComponent,
     SidebarComponent,
@@ -65,7 +67,13 @@ import { ViewLocationComponent } from './components/master/settings/location-set
     TimingSettingsComponent,
     AddLocationComponent,
     EditLocationComponent,
-    ViewLocationComponent
+    ViewLocationComponent,
+    ClinicComponent,
+    AddClinicComponent,
+    ViewClinicComponent,
+    EditClinicComponent,
+    EditRoomComponent,
+    ViewRoomComponent
   ],
   imports: [
     BrowserModule,

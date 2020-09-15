@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/master/dashboard/dashboard.component';
-import { AssetManagementComponent } from './components/master/asset-management/asset-management.component';
 import { DoctorComponent } from './components/master/doctor/doctor.component';
 import { ReceptionistComponent } from './components/master/receptionist/receptionist.component';
 import { RoomComponent } from './components/master/room/room.component';
@@ -25,6 +24,12 @@ import { EditTimingComponent } from './components/master/settings/timing-setting
 import { AddLocationComponent } from './components/master/settings/location-settings/add-location/add-location.component';
 import { EditLocationComponent } from './components/master/settings/location-settings/edit-location/edit-location.component';
 import { ViewLocationComponent } from './components/master/settings/location-settings/view-location/view-location.component';
+import { ClinicComponent } from './components/master/clinic/clinic.component';
+import { AddClinicComponent } from './components/master/clinic/add-clinic/add-clinic.component';
+import { ViewClinicComponent } from './components/master/clinic/view-clinic/view-clinic.component';
+import { EditClinicComponent } from './components/master/clinic/edit-clinic/edit-clinic.component';
+import { ViewRoomComponent } from './components/master/room/view-room/view-room.component';
+import { EditRoomComponent } from './components/master/room/edit-room/edit-room.component';
 
 const routes: Routes = [
   {path : 'login', component : LoginComponent},
@@ -32,10 +37,19 @@ const routes: Routes = [
   { path: 'master',  canActivate: [AuthGuard],  children : [
     {path: '', component: DashboardComponent},
     {path: 'dashboard', component: DashboardComponent},
-    {path: 'clinic', component: AssetManagementComponent},
+    {path: 'clinic', children : [
+      {path: '', component: ClinicComponent},
+      {path: 'add', component: AddClinicComponent},
+      {path: 'view/:id', component: ViewClinicComponent},
+      {path: 'edit/:id', component: EditClinicComponent}
+    ]},
     {path: 'doctor', component: DoctorComponent},
     {path: 'receptionist', component: ReceptionistComponent},
-    {path: 'room', component: RoomComponent},
+    {path: 'room', children : [
+      {path: '', component: RoomComponent},
+      {path: 'view/:id', component: ViewRoomComponent},
+      {path: 'edit/:id', component: EditRoomComponent}
+    ]},
     {path: 'settings', children : [
       {path: '', component: LocationSettingsComponent},
       {path: 'location', children : [

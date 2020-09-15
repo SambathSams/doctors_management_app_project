@@ -1,0 +1,77 @@
+<div class="main-wrapper">
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Add Clinic</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <p *ngIf="message" class="text-center error">{{message}}</p>
+                    <form class="form" [formGroup]="submitForm" (ngSubmit)="addData(submitForm.value)">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Clinic Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" required autofocus="" formControlName="clinicName">
+                                    <div *ngIf="f.clinicName.errors" class="help-block">
+                                        <div *ngIf="f.clinicName.errors.required">Clinic Name is required</div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>State<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" required formControlName="state">
+                                    <div *ngIf="f.state.errors" class="help-block">
+                                        <div *ngIf="f.state.errors.required">State is required</div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>City<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" required formControlName="city">
+                                    <div *ngIf="f.city.errors" class="help-block">
+                                        <div *ngIf="f.city.errors.required">City is required</div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Pincode<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="number" required formControlName="pincode">
+                                    <div *ngIf="f.pincode.errors" class="help-block">
+                                        <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Location<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" required formControlName="location">
+                                    <div *ngIf="f.location.errors" class="help-block">
+                                        <div *ngIf="f.location.errors.required">Location is required</div>
+                                  </div>
+                            </div>
+                            <div class="col">
+                                <label>Comment</label>
+                                    <input class="form-control" type="text" formControlName="comment">
+                            </div>
+                        </div>
+                        <div class="m-t-20 text-center">
+                            <button [disabled]="isSubmitted === true || submitForm.invalid" class="btn btn-primary submit-btn">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
