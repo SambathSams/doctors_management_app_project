@@ -39,6 +39,10 @@ import { ViewClinicComponent } from './components/master/clinic/view-clinic/view
 import { EditClinicComponent } from './components/master/clinic/edit-clinic/edit-clinic.component';
 import { EditRoomComponent } from './components/master/room/edit-room/edit-room.component';
 import { ViewRoomComponent } from './components/master/room/view-room/view-room.component';
+import { AddRoomComponent } from './components/master/room/add-room/add-room.component';
+import { AddDoctorComponent } from './components/master/doctor/add-doctor/add-doctor.component';
+import { EditDoctorComponent } from './components/master/doctor/edit-doctor/edit-doctor.component';
+import { ViewDoctorComponent } from './components/master/doctor/view-doctor/view-doctor.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +77,11 @@ import { ViewRoomComponent } from './components/master/room/view-room/view-room.
     ViewClinicComponent,
     EditClinicComponent,
     EditRoomComponent,
-    ViewRoomComponent
+    ViewRoomComponent,
+    AddRoomComponent,
+    AddDoctorComponent,
+    EditDoctorComponent,
+    ViewDoctorComponent
   ],
   imports: [
     BrowserModule,

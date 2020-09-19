@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { RoomService } from 'src/app/services/master/room/room.service';
+import { DoctorService } from 'src/app/services/master/doctor/doctor.service';
 
 @Component({
-  selector: 'app-edit-room',
-  templateUrl: './edit-room.component.html',
-  styleUrls: ['./edit-room.component.css']
+  selector: 'app-edit-doctor',
+  templateUrl: './edit-doctor.component.html',
+  styleUrls: ['./edit-doctor.component.css']
 })
-export class EditRoomComponent implements OnInit {
+export class EditDoctorComponent implements OnInit {
 
   submitForm: FormGroup;
   returnUrl: string;
@@ -18,15 +18,16 @@ export class EditRoomComponent implements OnInit {
   getData;
   isSubmitted = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private service: RoomService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: DoctorService) { }
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
-      roomNumber: ['', Validators.required],
-      rentPerMonth: [''],
-      paidStatus: ['false', Validators.required]
+      doctorName: ['', Validators.required],
+      email: ['', Validators.required],
+      contactNumber: [''],
+      active: ['', Validators.required]
     });
-    this.returnUrl = '/master/clinic';
+    this.returnUrl = '/master/doctor';
     this.id = this.router.url.split('/').pop();
     this.getByIdData(this.id);
   }
@@ -41,9 +42,10 @@ export class EditRoomComponent implements OnInit {
       this.getData = res.data;
       console.log(res.data);
       this.submitForm = this.formBuilder.group({
-        roomNumber: [res.data.roomNumber, Validators.required],
-      rentPerMonth: [res.data.rentPerMonth],
-      paidStatus: [res.data.paidStatus + '', Validators.required],
+        doctorName: [res.data.doctorName, Validators.required],
+      email: [res.data.email, Validators.required],
+      contactNumber: [res.data.contactNumber],
+      active: [res.data.active + '', Validators.required],
       });
     });
   }

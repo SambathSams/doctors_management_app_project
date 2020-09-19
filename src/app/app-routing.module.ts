@@ -30,6 +30,10 @@ import { ViewClinicComponent } from './components/master/clinic/view-clinic/view
 import { EditClinicComponent } from './components/master/clinic/edit-clinic/edit-clinic.component';
 import { ViewRoomComponent } from './components/master/room/view-room/view-room.component';
 import { EditRoomComponent } from './components/master/room/edit-room/edit-room.component';
+import { AddRoomComponent } from './components/master/room/add-room/add-room.component';
+import { AddDoctorComponent } from './components/master/doctor/add-doctor/add-doctor.component';
+import { ViewDoctorComponent } from './components/master/doctor/view-doctor/view-doctor.component';
+import { EditDoctorComponent } from './components/master/doctor/edit-doctor/edit-doctor.component';
 
 const routes: Routes = [
   {path : 'login', component : LoginComponent},
@@ -40,10 +44,16 @@ const routes: Routes = [
     {path: 'clinic', children : [
       {path: '', component: ClinicComponent},
       {path: 'add', component: AddClinicComponent},
+      {path: 'addroom/:id', component: AddRoomComponent},
       {path: 'view/:id', component: ViewClinicComponent},
       {path: 'edit/:id', component: EditClinicComponent}
     ]},
-    {path: 'doctor', component: DoctorComponent},
+    {path: 'doctor', children : [
+      {path: '', component: DoctorComponent},
+      {path: 'add', component: AddDoctorComponent},
+      {path: 'view/:id', component: ViewDoctorComponent},
+      {path: 'edit/:id', component: EditDoctorComponent}
+    ]},
     {path: 'receptionist', component: ReceptionistComponent},
     {path: 'room', children : [
       {path: '', component: RoomComponent},

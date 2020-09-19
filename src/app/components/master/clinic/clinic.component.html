@@ -24,6 +24,7 @@
                                 <thead>
                                     <tr>
                                         <th>Clinic Name</th>
+                                        <th>Add Room</th>
                                         <th>State</th>
                                         <th>City</th>
                                         <th>Pincode</th>
@@ -36,6 +37,10 @@
                                 <tbody>
                                     <tr *ngFor="let getOne of getAll">
                                         <td>{{getOne.clinicName}}</td>
+                                        <td>
+                                            <a routerLink="addroom/{{getOne._id}}" class="btn btn btn-primary btn-rounded float-centre"><i
+                                                class="fa fa-plus"></i> Add</a>
+                                        </td>
                                         <td>{{getOne.state}}</td>
                                         <td>{{getOne.city}}</td>
                                         <td>{{getOne.pincode}}</td>
