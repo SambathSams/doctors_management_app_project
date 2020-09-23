@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { RoomService } from 'src/app/services/master/room/room.service';
+import { ReceptionistService } from 'src/app/services/master/receptionist/receptionist.service';
 
 @Component({
-  selector: 'app-edit-room',
-  templateUrl: './edit-room.component.html',
-  styleUrls: ['./edit-room.component.css']
+  selector: 'app-edit-receptionist',
+  templateUrl: './edit-receptionist.component.html',
+  styleUrls: ['./edit-receptionist.component.css']
 })
-export class EditRoomComponent implements OnInit {
+export class EditReceptionistComponent implements OnInit {
 
   submitForm: FormGroup;
   returnUrl: string;
@@ -18,15 +18,15 @@ export class EditRoomComponent implements OnInit {
   getData;
   isSubmitted = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private service: RoomService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: ReceptionistService) { }
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
-      roomNumber: ['', Validators.required],
-      rentPerMonth: [''],
-      paidStatus: ['false', Validators.required]
+      receptionistName: ['', Validators.required],
+      email: ['', Validators.required],
+      status: ['', Validators.required]
     });
-    this.returnUrl = '/master/room';
+    this.returnUrl = '/master/receptionist';
     this.id = this.router.url.split('/').pop();
     this.getByIdData(this.id);
   }
@@ -41,9 +41,9 @@ export class EditRoomComponent implements OnInit {
       this.getData = res.data;
       console.log(res.data);
       this.submitForm = this.formBuilder.group({
-        roomNumber: [res.data.roomNumber, Validators.required],
-      rentPerMonth: [res.data.rentPerMonth],
-      paidStatus: [res.data.paidStatus + '', Validators.required],
+        receptionistName: [res.data.receptionistName, Validators.required],
+      email: [res.data.email, Validators.required],
+      status: [res.data.status + '', Validators.required],
       });
     });
   }

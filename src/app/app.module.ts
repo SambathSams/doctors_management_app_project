@@ -43,6 +43,9 @@ import { AddRoomComponent } from './components/master/room/add-room/add-room.com
 import { AddDoctorComponent } from './components/master/doctor/add-doctor/add-doctor.component';
 import { EditDoctorComponent } from './components/master/doctor/edit-doctor/edit-doctor.component';
 import { ViewDoctorComponent } from './components/master/doctor/view-doctor/view-doctor.component';
+import { AddReceptionistComponent } from './components/master/receptionist/add-receptionist/add-receptionist.component';
+import { EditReceptionistComponent } from './components/master/receptionist/edit-receptionist/edit-receptionist.component';
+import { ViewReceptionistComponent } from './components/master/receptionist/view-receptionist/view-receptionist.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +84,10 @@ import { ViewDoctorComponent } from './components/master/doctor/view-doctor/view
     AddRoomComponent,
     AddDoctorComponent,
     EditDoctorComponent,
-    ViewDoctorComponent
+    ViewDoctorComponent,
+    AddReceptionistComponent,
+    EditReceptionistComponent,
+    ViewReceptionistComponent
   ],
   imports: [
     BrowserModule,

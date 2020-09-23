@@ -34,6 +34,9 @@ import { AddRoomComponent } from './components/master/room/add-room/add-room.com
 import { AddDoctorComponent } from './components/master/doctor/add-doctor/add-doctor.component';
 import { ViewDoctorComponent } from './components/master/doctor/view-doctor/view-doctor.component';
 import { EditDoctorComponent } from './components/master/doctor/edit-doctor/edit-doctor.component';
+import { AddReceptionistComponent } from './components/master/receptionist/add-receptionist/add-receptionist.component';
+import { EditReceptionistComponent } from './components/master/receptionist/edit-receptionist/edit-receptionist.component';
+import { ViewReceptionistComponent } from './components/master/receptionist/view-receptionist/view-receptionist.component';
 
 const routes: Routes = [
   {path : 'login', component : LoginComponent},
@@ -54,7 +57,12 @@ const routes: Routes = [
       {path: 'view/:id', component: ViewDoctorComponent},
       {path: 'edit/:id', component: EditDoctorComponent}
     ]},
-    {path: 'receptionist', component: ReceptionistComponent},
+    {path: 'receptionist', children : [
+      {path: '', component: ReceptionistComponent},
+      {path: 'add', component: AddReceptionistComponent},
+      {path: 'view/:id', component: ViewReceptionistComponent},
+      {path: 'edit/:id', component: EditReceptionistComponent}
+    ]},
     {path: 'room', children : [
       {path: '', component: RoomComponent},
       {path: 'view/:id', component: ViewRoomComponent},

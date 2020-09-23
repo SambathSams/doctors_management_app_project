@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { RoomService } from 'src/app/services/master/room/room.service';
+import { ReceptionistService } from 'src/app/services/master/receptionist/receptionist.service';
 
 @Component({
-  selector: 'app-add-room',
-  templateUrl: './add-room.component.html',
-  styleUrls: ['./add-room.component.css']
+  selector: 'app-add-receptionist',
+  templateUrl: './add-receptionist.component.html',
+  styleUrls: ['./add-receptionist.component.css']
 })
-export class AddRoomComponent implements OnInit {
+export class AddReceptionistComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private service: RoomService ) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: ReceptionistService ) { }
   submitForm: FormGroup;
   returnUrl: string;
   message: string;
@@ -19,12 +19,10 @@ export class AddRoomComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
-      clinicData : [this.router.url.split('/').pop() + ''],
-      roomNumber: ['', Validators.required],
-      rentPerMonth: [''],
-      paidStatus : ['false']
+      receptionistName: ['', Validators.required],
+      email: ['', Validators.required],
     });
-    this.returnUrl = '/master/room';
+    this.returnUrl = '/master/receptionist';
   }
 
   // tslint:disable-next-line: typedef
