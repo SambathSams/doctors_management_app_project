@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DoctorComponent } from './components/master/doctor/doctor.component';
+import { PatientComponent } from './components/master/patient/patient.component';
 import { ReceptionistComponent } from './components/master/receptionist/receptionist.component';
 import { RoomComponent } from './components/master/room/room.component';
 
@@ -46,7 +47,9 @@ import { ViewDoctorComponent } from './components/master/doctor/view-doctor/view
 import { AddReceptionistComponent } from './components/master/receptionist/add-receptionist/add-receptionist.component';
 import { EditReceptionistComponent } from './components/master/receptionist/edit-receptionist/edit-receptionist.component';
 import { ViewReceptionistComponent } from './components/master/receptionist/view-receptionist/view-receptionist.component';
-
+import { AddPatientComponent } from './components/master/patient/add-patient/add-patient.component';
+import { EditPatientComponent } from './components/master/patient/edit-patient/edit-patient.component';
+import { ViewPatientComponent } from './components/master/patient/view-patient/view-patient.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +59,7 @@ import { ViewReceptionistComponent } from './components/master/receptionist/view
     SidebarComponent,
     FooterComponent,
     DoctorComponent,
+    PatientComponent,
     ReceptionistComponent,
     RoomComponent,
     LocationSettingsComponent,
@@ -87,7 +91,10 @@ import { ViewReceptionistComponent } from './components/master/receptionist/view
     ViewDoctorComponent,
     AddReceptionistComponent,
     EditReceptionistComponent,
-    ViewReceptionistComponent
+    ViewReceptionistComponent,
+    AddPatientComponent,
+    EditPatientComponent,
+    ViewPatientComponent
   ],
   imports: [
     BrowserModule,

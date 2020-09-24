@@ -37,6 +37,10 @@ import { EditDoctorComponent } from './components/master/doctor/edit-doctor/edit
 import { AddReceptionistComponent } from './components/master/receptionist/add-receptionist/add-receptionist.component';
 import { EditReceptionistComponent } from './components/master/receptionist/edit-receptionist/edit-receptionist.component';
 import { ViewReceptionistComponent } from './components/master/receptionist/view-receptionist/view-receptionist.component';
+import { AddPatientComponent } from './components/master/patient/add-patient/add-patient.component';
+import { EditPatientComponent } from './components/master/patient/edit-patient/edit-patient.component';
+import { ViewPatientComponent } from './components/master/patient/view-patient/view-patient.component';
+import { PatientComponent } from './components/master/patient/patient.component';
 
 const routes: Routes = [
   {path : 'login', component : LoginComponent},
@@ -56,6 +60,12 @@ const routes: Routes = [
       {path: 'add', component: AddDoctorComponent},
       {path: 'view/:id', component: ViewDoctorComponent},
       {path: 'edit/:id', component: EditDoctorComponent}
+    ]},
+    {path: 'patient', children : [
+      {path: '', component: PatientComponent},
+      {path: 'add', component: AddPatientComponent},
+      {path: 'view/:id', component: ViewPatientComponent},
+      {path: 'edit/:id', component: EditPatientComponent}
     ]},
     {path: 'receptionist', children : [
       {path: '', component: ReceptionistComponent},
