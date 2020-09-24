@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient} from '@angular/common/http';
-import { baseLocalURL } from '../../../../../constants';
+import { baseURL } from '../../../../../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
 
-  readonly baseUrl = baseLocalURL;
+  readonly baseUrl = baseURL;
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
