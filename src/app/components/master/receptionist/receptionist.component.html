@@ -6,11 +6,11 @@
         <div class="content">
             <div class="row">
                 <div class="col-sm-4 col-3">
-                    <h4 class="page-title">Receptionist</h4>
+                    <h4 class="page-title">Clinic Manager</h4>
                 </div>
                 <div class="col-sm-8 col-9 text-right m-b-20">
                     <a routerLink="add" routerLinkActive="active" class="btn btn btn-primary btn-rounded float-right"><i
-                            class="fa fa-plus"></i> Add Receptionist</a>
+                            class="fa fa-plus"></i> Add Clinic Manager</a>
                 </div>
             </div>
             <div class="row">
@@ -23,14 +23,16 @@
                             <table class="table table-border table-striped custom-table datatable mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Receptionist Name</th>
+                                        <th>#</th>
+                                        <th>Clinic Manager Name</th>
                                         <th>Email</th>
                                         <th>Status</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let getOne of getAll">
+                                    <tr *ngFor="let getOne of getAll; let i = index">
+                                        <td>{{i+1}}</td>
                                         <td>{{getOne.receptionistName}}</td>
                                         <td>{{getOne.email}}</td>
                                         <td>{{getOne.status}}</td>
@@ -44,7 +46,7 @@
                                                     <a class="dropdown-item" routerLink="edit/{{getOne._id}}" routerLinkActive="active"><i
                                                             class="fa fa-pencil m-r-5"></i> Edit</a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                                        data-target="#delete" (click)="getIdData(getOne._id)"><i
+                                                        data-target="#delete" (click)="getIdData(getOne._id,i)"><i
                                                             class="fa fa-trash-o m-r-5"></i>
                                                         Delete</a>
                                                 </div>

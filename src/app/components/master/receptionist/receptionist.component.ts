@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../../app.component';
 
-import { ReceptionistService } from 'src/app/services/master/receptionist/receptionist.service';
+import { ReceptionistService } from '../../../services/master/receptionist/receptionist.service';
 
 @Component({
   selector: 'app-receptionist',
@@ -11,17 +12,23 @@ export class ReceptionistComponent implements OnInit {
 
   getAll;
   getId;
+  index;
 
-  constructor(private service: ReceptionistService) {
+  constructor(
+    private service: ReceptionistService,
+    private appComponent: AppComponent
+    ) {
    }
 
   ngOnInit(): void {
+    this.appComponent.setTitle("Clinic manager | Doctor Plaza");
     this.getAllData();
   }
 
   // tslint:disable-next-line: typedef
-  getIdData(id) {
+  getIdData(id,i) {
     this.getId = id;
+    this.index = i;
   }
 
   // tslint:disable-next-line: typedef
@@ -36,6 +43,7 @@ export class ReceptionistComponent implements OnInit {
     this.service.deleteById(id).subscribe(res => {
       this.getId = undefined;
     });
+    this.getAll.splice(this.index,1);
   }
 
 }

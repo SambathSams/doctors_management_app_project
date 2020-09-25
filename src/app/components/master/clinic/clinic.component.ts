@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClinicService } from 'src/app/services/master/clinic/clinic.service';
+import { ClinicService } from '../../../services/master/clinic/clinic.service';
+import { AppComponent } from '../../../app.component';
 
 @Component({
   selector: 'app-clinic',
@@ -10,17 +11,23 @@ export class ClinicComponent implements OnInit {
 
   getAll;
   getId;
+  index;
 
-  constructor(private service: ClinicService) {
+  constructor(
+    private service: ClinicService,
+    private appComponent: AppComponent
+    ) {
    }
 
   ngOnInit(): void {
+    this.appComponent.setTitle("Clinic Management | Doctor Plaza");
     this.getAllData();
   }
 
   // tslint:disable-next-line: typedef
-  getIdData(id) {
+  getIdData(id,i) {
     this.getId = id;
+    this.index = i;
   }
 
   // tslint:disable-next-line: typedef
@@ -35,6 +42,7 @@ export class ClinicComponent implements OnInit {
     this.service.deleteById(id).subscribe(res => {
       this.getId = undefined;
     });
+    this.getAll.splice(this.index,1);
   }
 
 }

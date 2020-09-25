@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from 'src/app/services/master/location/location.service';
+import { AppComponent } from '../../../../app.component';
 
 @Component({
   selector: 'app-location-settings',
@@ -11,10 +12,14 @@ export class LocationSettingsComponent implements OnInit {
   getAll;
   getId;
 
-  constructor(private service: LocationService) {
+  constructor(
+    private service: LocationService,
+    private appComponent: AppComponent
+    ) {
    }
 
   ngOnInit(): void {
+    this.appComponent.setTitle("Location Management | Doctor Plaza");
     this.getAllData();
   }
 

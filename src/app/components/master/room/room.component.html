@@ -52,6 +52,7 @@
                             <thead>
                                 <tr>
                                     <!-- <th style="min-width:200px;">Name</th> -->
+                                   <th>#</th>
                                     <th>Doctor Name</th>
                                     <th>Clinic Name</th>
                                     <th>Room Number</th>
@@ -64,7 +65,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let getOne of getAll">
+                                <tr *ngFor="let getOne of getAll; let i = index">
+                                    <td>{{i+1}}</td>
                                     <td>{{getOne?.doctorData?.doctorName || '-'}}</td>
                                     <td>{{getOne?.clinicData?.clinicName}}</td>
                                     <td>{{getOne?.roomNumber}}</td>

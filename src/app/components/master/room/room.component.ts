@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomService } from 'src/app/services/master/room/room.service';
+import { RoomService } from '../../../services/master/room/room.service';
+import { AppComponent } from '../../../app.component';
 
 @Component({
   selector: 'app-room',
@@ -11,10 +12,14 @@ export class RoomComponent implements OnInit {
   getAll;
   getId;
 
-  constructor(private service: RoomService) {
+  constructor(
+    private service: RoomService,
+    private appComponent: AppComponent
+    ) {
    }
 
   ngOnInit(): void {
+    this.appComponent.setTitle("Room Management | Doctor Plaza");
     this.getAllData();
   }
 

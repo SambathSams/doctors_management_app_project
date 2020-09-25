@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TimingService } from 'src/app/services/master/timing/timing.service';
+import { AppComponent } from '../../../../app.component';
 
 @Component({
   selector: 'app-timing-settings',
@@ -11,10 +12,11 @@ export class TimingSettingsComponent implements OnInit {
   getAll;
   getId;
 
-  constructor(private service: TimingService) {
+  constructor(private service: TimingService, private appComponent: AppComponent) {
    }
 
   ngOnInit(): void {
+    this.appComponent.setTitle("Time Management | Doctor Plaza");
     this.getAllData();
   }
 

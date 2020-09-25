@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpecializationService } from 'src/app/services/master/specialization/specialization.service';
+import { AppComponent } from '../../../../app.component';
 
 @Component({
   selector: 'app-specialization-settings',
@@ -10,10 +11,14 @@ export class SpecializationSettingsComponent implements OnInit {
   getAll;
   getId;
 
-  constructor(private service: SpecializationService) {
+  constructor(
+    private service: SpecializationService,
+    private appComponent: AppComponent
+    ) {
    }
 
   ngOnInit(): void {
+    this.appComponent.setTitle("Specialization Management | Doctor Plaza");
     this.getAllData();
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConditionService } from 'src/app/services/master/condition/condition.service';
+import { AppComponent } from '../../../../app.component';
 
 @Component({
   selector: 'app-condition-settings',
@@ -9,9 +10,10 @@ import { ConditionService } from 'src/app/services/master/condition/condition.se
 export class ConditionSettingsComponent implements OnInit {
   getAll;
   getId;
-  constructor(private service: ConditionService) { }
+  constructor(private service: ConditionService,private appComponent: AppComponent) { }
 
   ngOnInit(): void {
+    this.appComponent.setTitle("Condition Management | Doctor Plaza");
     this.getAllData();
   }
 

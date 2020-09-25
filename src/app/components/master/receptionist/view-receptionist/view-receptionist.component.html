@@ -3,12 +3,12 @@
     <app-sidebar></app-sidebar>
 
     <div class="page-wrapper">
-        <h2>Receptionist Data</h2>
+        <h2>Clinic Manager Data</h2>
         <div *ngIf="undefined === getData">Loading...</div>
         <div *ngIf="undefined !== getData">
         <ul>
             <li>ID : {{getData._id}}</li>
-            <li>Receptionist Name : {{getData.receptionistName}}</li>
+            <li>Clinic Manager Name : {{getData.receptionistName}}</li>
             <li>Email : {{getData.email}}</li>
             <li>Password : {{getData.password}}</li>
             <li>Status : {{getData.status}}</li>
