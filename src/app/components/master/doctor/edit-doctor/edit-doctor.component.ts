@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import * as $ from 'jquery';
 import { DoctorService } from '../../../../services/master/doctor/doctor.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class EditDoctorComponent implements OnInit {
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
       doctorName: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['',[Validators.required, Validators.email]],
       contactNumber: [''],
       active: ['', Validators.required]
     });
@@ -52,12 +52,21 @@ export class EditDoctorComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   updateById(id, data) {
+    this.isSubmitted = true;
+
+    if (data.doctorName.trim() != "") {
+      if (!($("#val_id1").hasClass("hidden")))
+        $("#val_id1").addClass("hidden");
+    } else {
+      $("#val_id1").removeClass("hidden");
+      return false;
+    }
+
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;
     }
-    else {
-      this.isSubmitted = true;
+    // else {
       this.service.updateById(id, data).subscribe(response => {
         if (response.data) {
           this.router.navigate([this.returnUrl]);
@@ -67,7 +76,7 @@ export class EditDoctorComponent implements OnInit {
           this.message = 'Failed to submit the form.';
         }
       });
-    }
+    // }
   }
 
 }

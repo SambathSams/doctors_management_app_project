@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ReceptionistService } from 'src/app/services/master/receptionist/receptionist.service';
+import { ReceptionistService } from '../../../../services/master/receptionist/receptionist.service';
 
 @Component({
   selector: 'app-add-receptionist',
@@ -19,8 +19,8 @@ export class AddReceptionistComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
-      receptionistName: ['', Validators.required],
-      email: ['', Validators.required],
+      receptionistName: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
     });
     this.returnUrl = '/master/receptionist';
   }
@@ -29,14 +29,15 @@ export class AddReceptionistComponent implements OnInit {
   get f() { return this.submitForm.controls; }
 
   // tslint:disable-next-line: typedef
-  addData(data){
+  addData(formGroup: FormGroup,data){
     console.log(data);
+    Object.keys(formGroup.controls).forEach((key) => formGroup.get(key).setValue(formGroup.get(key).value.trim()));
+    this.isSubmitted = true;
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;
     }
-    else{
-      this.isSubmitted = true;
+    // else{
       this.service.create(data).subscribe(response => {
         if (response.data){
           this.router.navigate([this.returnUrl]);
@@ -47,7 +48,13 @@ export class AddReceptionistComponent implements OnInit {
           console.log(data);
         }
       });
-    }
+      this.onReset();
+    // }
+  }
+
+  onReset() {
+    this.isSubmitted = false;
+    this.submitForm.reset();
   }
 
 }

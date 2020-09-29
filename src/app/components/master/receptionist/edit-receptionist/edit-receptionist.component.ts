@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { ReceptionistService } from 'src/app/services/master/receptionist/receptionist.service';
+import * as $ from 'jquery';
+import { ReceptionistService } from '../../../../services/master/receptionist/receptionist.service';
 
 @Component({
   selector: 'app-edit-receptionist',
@@ -50,12 +50,19 @@ export class EditReceptionistComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   updateById(id, data) {
+    this.isSubmitted = true;
+    if (data.receptionistName.trim() != "") {
+      if (!($("#val_id1").hasClass("hidden")))
+        $("#val_id1").addClass("hidden");
+    } else {
+      $("#val_id1").removeClass("hidden");
+      return false;
+    }
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;
     }
-    else {
-      this.isSubmitted = true;
+    // else {
       this.service.updateById(id, data).subscribe(response => {
         if (response.data) {
           this.router.navigate([this.returnUrl]);
@@ -65,7 +72,7 @@ export class EditReceptionistComponent implements OnInit {
           this.message = 'Failed to submit the form.';
         }
       });
-    }
+    // }
   }
 
 }

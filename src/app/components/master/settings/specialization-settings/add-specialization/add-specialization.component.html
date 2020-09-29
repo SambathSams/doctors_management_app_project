@@ -10,16 +10,16 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <p *ngIf="message" class="text-center error">{{message}}</p>
-                    <form class="form" [formGroup]="submitForm" (ngSubmit)="addData(submitForm.value)">
+                    <form class="form" [formGroup]="submitForm" (ngSubmit)="addData(submitForm,submitForm.value)">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Specialization<span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" required autofocus="" formControlName="specialization">
-                                    <div *ngIf="f.specialization.errors" class="help-block">
-                                        <div *ngIf="f.specialization.errors.required">Specialization is required</div>
-                                  </div>
+                                  <input type="text" formControlName="specialization" class="form-control"
+                                  [ngClass]="{'is-invalid': isSubmitted && f.specialization.errors }" />
+                              <div *ngIf=" isSubmitted && f.specialization.errors" class="invalid-feedback">
+                                  <div *ngIf="f.specialization.errors.required">Specialization is required</div>
+                              </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="m-t-20 text-center">
-                            <button [disabled]="isSubmitted === true || submitForm.invalid" class="btn btn-primary submit-btn">Add</button>
+                            <button  class="btn btn-primary submit-btn">Add</button>
                         </div>
                     </form>
                 </div>

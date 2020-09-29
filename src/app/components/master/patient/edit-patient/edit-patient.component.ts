@@ -22,21 +22,23 @@ export class EditPatientComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private service: PatientService) { }
 
   ngOnInit(): void {
-    this.submitForm = this.formBuilder.group({
-      patient_name: ['', Validators.required],
-      email: ['', Validators.required],
-      contactNumber: [''],
-      active: ['', Validators.required]
-    });
+    this.initForm();
     this.returnUrl = '/master/patient';
     this.id = this.router.url.split('/').pop();
     this.getByIdData(this.id);
   }
 
-  blurMethod1() {
-    $("#val_id1").addClass("hidden");
+  initForm() {
+    this.isSubmitted = false;
+    this.submitForm = this.formBuilder.group({
+      patient_name: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      contactNumber: new FormControl('', Validators.required),
+      active: new FormControl('', Validators.required),
+    });
   }
 
+  
   // tslint:disable-next-line: typedef
   get f() { return this.submitForm.controls; }
 
@@ -52,55 +54,34 @@ export class EditPatientComponent implements OnInit {
       contactNumber: [res.data.contact_number],
       active: [res.data.active + '', Validators.required],
       });
+      // this.submitForm = this.formBuilder.group({
+      //   patient_name: new FormControl(res.data.patient_name, Validators.required),
+      //   email: new FormControl(res.data.email, [Validators.required, Validators.email]),
+      //   contactNumber: new FormControl(res.data.contact_number, Validators.required),
+      //   active: new FormControl(res.data.active, Validators.required),
+      // });
     });
   }
 
   // tslint:disable-next-line: typedef
-  updateById(id, data) {
-    let pName = data.patient_name;
-    if (pName.trim() != "") {
+  updateById(id, data, formGroup: FormGroup) {
+    // Object.keys(formGroup.controls).forEach((key) => formGroup.get(key).setValue(formGroup.get(key).value.trim()));
+    this.isSubmitted = true;
+
+    if (data.patient_name.trim() != "") {
       if (!($("#val_id1").hasClass("hidden")))
         $("#val_id1").addClass("hidden");
     } else {
-      alert('Space not allowed')
       $("#val_id1").removeClass("hidden");
       return false;
     }
-
-    if (data.email.trim() != "") {
-      if (!($("#val_id1").hasClass("hidden")))
-        $("#val_id1").addClass("hidden");
-    } else {
-      alert('Space not allowed')
-      $("#val_id1").removeClass("hidden");
-      return false;
-    }
-
-    if (data.contactNumber.trim() != "") {
-      if (!($("#val_id1").hasClass("hidden")))
-        $("#val_id1").addClass("hidden");
-    } else {
-      alert('Space not allowed')
-      $("#val_id1").removeClass("hidden");
-      return false;
-    }
-
-    if (!Util.validateEmail(data.email)) {
-      if ($("#email1").hasClass('hidden')) {
-        alert('Insert valid email')
-        $("#email1").removeClass('hidden');
-        return;
-      }
-    } else {
-      $("#email1").addClass('hidden')
-    }
-
+   
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;
     }
-    else {
-      this.isSubmitted = true;
+    // else {
+      // this.isSubmitted = true;
       this.service.updateById(id, data).subscribe(response => {
         if (response.data) {
           this.router.navigate([this.returnUrl]);
@@ -110,7 +91,7 @@ export class EditPatientComponent implements OnInit {
           this.message = 'Failed to submit the form.';
         }
       });
-    }
+    // }
   }
 
 }

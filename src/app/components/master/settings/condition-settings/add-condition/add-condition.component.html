@@ -10,21 +10,21 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <p *ngIf="message" class="text-center error">{{message}}</p>
-                    <form class="form" [formGroup]="submitForm" (ngSubmit)="addData(submitForm.value)">
+                    <form class="form" [formGroup]="submitForm" (ngSubmit)="addData(submitForm,submitForm.value)">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Health Issues<span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" required autofocus="" formControlName="healthIssues">
-                                    <div *ngIf="f.healthIssues.errors" class="help-block">
+                                    <input type="text" formControlName="healthIssues" class="form-control"
+                                        [ngClass]="{'is-invalid': isSubmitted && f.healthIssues.errors }" />
+                                    <div *ngIf=" isSubmitted && f.healthIssues.errors" class="invalid-feedback">
                                         <div *ngIf="f.healthIssues.errors.required">Health Issues is required</div>
-                                  </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="m-t-20 text-center">
-                            <button [disabled]="isSubmitted === true || submitForm.invalid" class="btn btn-primary submit-btn">Add</button>
+                            <button class="btn btn-primary submit-btn">Add</button>
                         </div>
                     </form>
                 </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { LocationService } from 'src/app/services/master/location/location.service';
+import * as $ from 'jquery';
+import { LocationService } from '../../../../../services/master/location/location.service';
 
 @Component({
   selector: 'app-edit-location',
@@ -25,7 +25,7 @@ export class EditLocationComponent implements OnInit {
       state: ['', Validators.required],
       city: ['', Validators.required],
       pincode: ['', Validators.required],
-      address: ['', Validators.required],
+      location: ['', Validators.required],
       status: ['', Validators.required],
     });
     this.returnUrl = '/master/settings/location';
@@ -46,7 +46,7 @@ export class EditLocationComponent implements OnInit {
           state: res.data.state,
       city: res.data.city,
       pincode: res.data.pincode,
-      address: res.data.address,
+      location: res.data.location,
       status: res.data.status + '',
         });
       });
@@ -54,13 +54,46 @@ export class EditLocationComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   updateByIdData(id, data){
+    this.isSubmitted = true;
+    if (data.state.trim() != "") {
+      if (!($("#val_id1").hasClass("hidden")))
+        $("#val_id1").addClass("hidden");
+    } else {
+      $("#val_id1").removeClass("hidden");
+      return false;
+    }
+
+    if (data.city.trim() != "") {
+      if (!($("#val_id2").hasClass("hidden")))
+        $("#val_id2").addClass("hidden");
+    } else {
+      $("#val_id2").removeClass("hidden");
+      return false;
+    }
+
+    if (data.location.trim() != "") {
+      if (!($("#val_id3").hasClass("hidden")))
+        $("#val_id3").addClass("hidden");
+    } else {
+      $("#val_id3").removeClass("hidden");
+      return false;
+    }
+
+    // if (data.pincode.trim() != "") {
+    //   if (!($("#val_id4").hasClass("hidden")))
+    //     $("#val_id4").addClass("hidden");
+    // } else {
+    //   $("#val_id4").removeClass("hidden");
+    //   return false;
+    // }
+
+
     if (this.submitForm.invalid) {
           this.message = 'Invalid form submission.';
           return;
         }
-        else{
+        // else{
           this.service.updateById(id, data).subscribe(response => {
-            this.isSubmitted = true;
             if (response.data){
               this.router.navigate([this.returnUrl]);
             }
@@ -69,7 +102,7 @@ export class EditLocationComponent implements OnInit {
               this.message = 'Failed to submit the form.';
             }
           });
-        }
+        // }
   }
 
 }

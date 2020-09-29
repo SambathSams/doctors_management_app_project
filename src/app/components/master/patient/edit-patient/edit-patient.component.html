@@ -15,27 +15,33 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <p *ngIf="message" class="text-center error">{{message}}</p>
-                        <form class="form" [formGroup]="submitForm" (ngSubmit)="updateById(id, submitForm.value)">
+                        <!-- <p *ngIf="message" class="text-center error">{{message}}</p> -->
+                        <form class="form" [formGroup]="submitForm"
+                            (ngSubmit)="updateById(id, submitForm.value, submitForm)">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Patient Name<span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" (blur)="blurMethod1()" required autofocus="" formControlName="patient_name">
-                                        <div *ngIf="f.patient_name.errors" class="help-block">
+                                        <input type="text" formControlName="patient_name" class="form-control"
+                                        onkeyup="this.value=this.value.replace(/[^a-zA-Z]+/,'')"
+                                            [ngClass]="{'is-invalid': isSubmitted && f.patient_name.errors }" />
+                                        <div *ngIf=" isSubmitted && f.patient_name.errors" class="invalid-feedback">
                                             <div *ngIf="f.patient_name.errors.required">Patient Name is required</div>
-                                      </div>
-                                    <div class="red-text hidden" id="val_id1"></div>
+                                        </div>
+                                        <div class="red-text hidden" *ngIf="isSubmitted" id="val_id1">Empty field is
+                                            not allowed</div>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Email<span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" required formControlName="email">
-                                        <div *ngIf="f.email.errors" class="help-block">
+                                        <input type="text" formControlName="email" class="form-control"
+                                            onkeyup="this.value=this.value.replace(/^\s*|\$/g,'')"
+                                            [ngClass]="{'is-invalid': isSubmitted && f.email.errors }" />
+                                        <div *ngIf=" isSubmitted && f.email.errors" class="invalid-feedback">
                                             <div *ngIf="f.email.errors.required">Email is required</div>
-                                      </div>
-                                    <div class="red-text hidden" id="email1"> </div>
+                                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -43,10 +49,13 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Contact Number</label>
-                                        <input class="form-control" type="text" required formControlName="contactNumber">
-                                        <!-- <div *ngIf="f.contactNumber.errors" class="help-block">
-                                            <div *ngIf="f.city.contactNumber.required">Contact Number is required</div>
-                                      </div> -->
+                                        <input type="text" formControlName="contactNumber" class="form-control"
+                                            onkeyup="this.value=this.value.replace(/^\s*|\$/g,'')"
+                                            [ngClass]="{'is-invalid': isSubmitted && f.contactNumber.errors }" />
+                                        <div *ngIf=" isSubmitted && f.contactNumber.errors" class="invalid-feedback">
+                                            <div *ngIf="f.contactNumber.errors.required">Contact Number is required
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -73,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="m-t-20 text-center">
-                                <button [disabled]="isSubmitted === true || submitForm.invalid" class="btn btn-primary submit-btn">Save</button>
+                                <button class="btn btn-primary submit-btn">Save</button>
                             </div>
                         </form>
                     </div>

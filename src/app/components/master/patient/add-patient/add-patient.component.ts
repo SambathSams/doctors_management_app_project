@@ -11,87 +11,55 @@ import * as $ from 'jquery';
 })
 export class AddPatientComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private service: PatientService ) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: PatientService) { }
   submitForm: FormGroup;
   returnUrl: string;
   message: string;
   isSubmitted = false;
 
   ngOnInit(): void {
-    this.submitForm = this.formBuilder.group({
-      patient_name: ['', Validators.required],
-      email: ['', Validators.required],
-      contactNumber: [''],
-    });
+    this.initForm();
     this.returnUrl = '/master/patient';
   }
 
-  blurMethod1() {
-    $("#val_id1").addClass("hidden");
+  initForm() {
+    this.isSubmitted = false;
+    this.submitForm = this.formBuilder.group({
+      patient_name: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      contactNumber: new FormControl('', [Validators.required,Validators.minLength(10)]),
+    });
   }
 
   // tslint:disable-next-line: typedef
   get f() { return this.submitForm.controls; }
 
   // tslint:disable-next-line: typedef
-  addData(data){
-    console.log(data.patient_name);
-    // alert(data.patient_name)
-    let pName = data.patient_name;
-    if (pName.trim() != "") {
-      if (!($("#val_id1").hasClass("hidden")))
-        $("#val_id1").addClass("hidden");
-    } else {
-      alert('Space not allowed')
-      $("#val_id1").removeClass("hidden");
-      return false;
-    }
+  addData(formGroup: FormGroup, data) {
 
-    if (data.email.trim() != "") {
-      if (!($("#val_id1").hasClass("hidden")))
-        $("#val_id1").addClass("hidden");
-    } else {
-      alert('Space not allowed')
-      $("#val_id1").removeClass("hidden");
-      return false;
-    }
-
-    if (data.contactNumber.trim() != "") {
-      if (!($("#val_id1").hasClass("hidden")))
-        $("#val_id1").addClass("hidden");
-    } else {
-      alert('Space not allowed')
-      $("#val_id1").removeClass("hidden");
-      return false;
-    }
-
-    if (!Util.validateEmail(data.email)) {
-      if ($("#email1").hasClass('hidden')) {
-        alert('Insert valid email')
-        $("#email1").removeClass('hidden');
-        return;
-      }
-    } else {
-      $("#email1").addClass('hidden')
-    }
-
+    Object.keys(formGroup.controls).forEach((key) => formGroup.get(key).setValue(formGroup.get(key).value.trim()));
+    this.isSubmitted = true;
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;
     }
-    else{
-      this.isSubmitted = true;
-      this.service.create(data).subscribe(response => {
-        if (response.data){
-          this.router.navigate([this.returnUrl]);
-        }
-        else{
-          this.isSubmitted = false;
-          this.message = 'Failed to submit the form.';
-          console.log(data);
-        }
-      });
-    }
+
+    this.service.create(data).subscribe(response => {
+      if (response.data) {
+        this.router.navigate([this.returnUrl]);
+      }
+      else {
+        this.isSubmitted = false;
+        this.message = 'Failed to submit the form.';
+        console.log(data);
+      }
+    });
+    this.onReset();
+  }
+
+  onReset() {
+    this.isSubmitted = false;
+    this.submitForm.reset();
   }
 
 }

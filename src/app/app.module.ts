@@ -14,7 +14,7 @@ import { DoctorComponent } from './components/master/doctor/doctor.component';
 import { PatientComponent } from './components/master/patient/patient.component';
 import { ReceptionistComponent } from './components/master/receptionist/receptionist.component';
 import { RoomComponent } from './components/master/room/room.component';
-
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 import { AuthGuard } from './services/auth/auth.guard';
 import { LocationSettingsComponent } from './components/master/settings/location-settings/location-settings.component';
@@ -101,7 +101,8 @@ import { ViewPatientComponent } from './components/master/patient/view-patient/v
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ShowHidePasswordModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
