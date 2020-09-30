@@ -11,6 +11,7 @@ export class TimingSettingsComponent implements OnInit {
 
   getAll;
   getId;
+  lengthh;
 
   constructor(private service: TimingService, private appComponent: AppComponent) {
    }
@@ -29,6 +30,7 @@ export class TimingSettingsComponent implements OnInit {
   getAllData() {
     this.service.getAll().subscribe(res => {
         this.getAll = res.data;
+        this.lengthh = this.getAll.length;
       });
   }
 

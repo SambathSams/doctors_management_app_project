@@ -13,6 +13,7 @@ export class ReceptionistComponent implements OnInit {
   getAll;
   getId;
   index;
+  lengthh;
 
   constructor(
     private service: ReceptionistService,
@@ -35,6 +36,7 @@ export class ReceptionistComponent implements OnInit {
   getAllData() {
     this.service.getAll().subscribe(res => {
         this.getAll = res.data;
+        this.lengthh = this.getAll.length;
       });
   }
 

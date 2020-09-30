@@ -11,6 +11,7 @@ export class LocationSettingsComponent implements OnInit {
 
   getAll;
   getId;
+  lengthh;
 
   constructor(
     private service: LocationService,
@@ -32,6 +33,7 @@ export class LocationSettingsComponent implements OnInit {
   getAllData() {
     this.service.getAll().subscribe(res => {
         this.getAll = res.data;
+        this.lengthh = this.getAll.length;
       });
   }
 

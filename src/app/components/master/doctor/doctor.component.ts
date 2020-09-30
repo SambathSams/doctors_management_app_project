@@ -12,6 +12,7 @@ export class DoctorComponent implements OnInit {
   getAll;
   getId;
   index;
+  lengthh;
 
   constructor(
     private service: DoctorService,
@@ -34,6 +35,7 @@ export class DoctorComponent implements OnInit {
   getAllData() {
     this.service.getAll().subscribe(res => {
         this.getAll = res.data;
+        this.lengthh = this.getAll.length;
       });
   }
 

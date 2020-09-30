@@ -12,6 +12,7 @@ export class ClinicComponent implements OnInit {
   getAll;
   getId;
   index;
+  lengthh;
 
   constructor(
     private service: ClinicService,
@@ -34,6 +35,8 @@ export class ClinicComponent implements OnInit {
   getAllData() {
     this.service.getAll().subscribe(res => {
         this.getAll = res.data;
+        this.lengthh = this.getAll.length;
+        console.log('lengthhhhhh',this.getAll.length)
       });
   }
 

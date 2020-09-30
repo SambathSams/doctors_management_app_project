@@ -10,6 +10,7 @@ import { AppComponent } from '../../../../app.component';
 export class SpecializationSettingsComponent implements OnInit {
   getAll;
   getId;
+  lengthh;
 
   constructor(
     private service: SpecializationService,
@@ -31,6 +32,7 @@ export class SpecializationSettingsComponent implements OnInit {
   getAllData() {
     this.service.getAll().subscribe(res => {
         this.getAll = res.data;
+        this.lengthh = this.getAll.length;
       });
   }
 

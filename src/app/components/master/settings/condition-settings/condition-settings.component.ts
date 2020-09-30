@@ -10,6 +10,7 @@ import { AppComponent } from '../../../../app.component';
 export class ConditionSettingsComponent implements OnInit {
   getAll;
   getId;
+  lengthh;
   constructor(private service: ConditionService,private appComponent: AppComponent) { }
 
   ngOnInit(): void {
@@ -26,6 +27,7 @@ export class ConditionSettingsComponent implements OnInit {
   getAllData() {
     this.service.getAll().subscribe(res => {
         this.getAll = res.data;
+        this.lengthh = this.getAll.length;
       });
   }
 
