@@ -25,9 +25,9 @@ export class AddDoctorComponent implements OnInit {
   initForm() {
     this.isSubmitted = false;
     this.submitForm = this.formBuilder.group({
-      doctorName: new FormControl('', Validators.required),
+      doctorName: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      contactNumber: new FormControl('', [Validators.required,Validators.minLength(10)]),
+      contactNumber: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+$"), Validators.minLength(10), Validators.maxLength(10)]),
     });
   }
 
@@ -44,7 +44,7 @@ export class AddDoctorComponent implements OnInit {
       return;
     }
     // else{
-    this.isSubmitted = true;
+    // this.isSubmitted = true;
     this.service.create(data).subscribe(response => {
       if (response.data) {
         this.router.navigate([this.returnUrl]);

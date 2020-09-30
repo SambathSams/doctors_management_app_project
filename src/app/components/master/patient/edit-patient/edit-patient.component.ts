@@ -31,9 +31,9 @@ export class EditPatientComponent implements OnInit {
   initForm() {
     this.isSubmitted = false;
     this.submitForm = this.formBuilder.group({
-      patient_name: new FormControl('', Validators.required),
+      patient_name: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      contactNumber: new FormControl('', Validators.required),
+      contactNumber: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+$"), Validators.minLength(10), Validators.maxLength(10)]),
       active: new FormControl('', Validators.required),
     });
   }
@@ -49,33 +49,18 @@ export class EditPatientComponent implements OnInit {
       this.getData = res.data;
       console.log(res.data);
       this.submitForm = this.formBuilder.group({
-        patient_name: [res.data.patient_name, Validators.required],
-      email: [res.data.email, Validators.required],
-      contactNumber: [res.data.contact_number],
+        patient_name: [res.data.patient_name, [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      email: [res.data.email,  [Validators.required, Validators.email]],
+      contactNumber: [res.data.contact_number, [Validators.required, Validators.pattern("^[0-9]+$"), Validators.minLength(10), Validators.maxLength(10)]],
       active: [res.data.active + '', Validators.required],
       });
-      // this.submitForm = this.formBuilder.group({
-      //   patient_name: new FormControl(res.data.patient_name, Validators.required),
-      //   email: new FormControl(res.data.email, [Validators.required, Validators.email]),
-      //   contactNumber: new FormControl(res.data.contact_number, Validators.required),
-      //   active: new FormControl(res.data.active, Validators.required),
-      // });
     });
   }
 
   // tslint:disable-next-line: typedef
   updateById(id, data, formGroup: FormGroup) {
-    // Object.keys(formGroup.controls).forEach((key) => formGroup.get(key).setValue(formGroup.get(key).value.trim()));
     this.isSubmitted = true;
 
-    if (data.patient_name.trim() != "") {
-      if (!($("#val_id1").hasClass("hidden")))
-        $("#val_id1").addClass("hidden");
-    } else {
-      $("#val_id1").removeClass("hidden");
-      return false;
-    }
-   
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;

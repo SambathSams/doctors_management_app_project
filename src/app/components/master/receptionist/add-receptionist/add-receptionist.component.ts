@@ -19,7 +19,7 @@ export class AddReceptionistComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
-      receptionistName: new FormControl('', Validators.required),
+      receptionistName: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]),
       email: new FormControl('', [Validators.required, Validators.email]),
     });
     this.returnUrl = '/master/receptionist';

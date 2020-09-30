@@ -15,20 +15,22 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>State<span class="text-danger">*</span></label>
-                                    <input type="text" formControlName="state" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-Z]+/,'')"
+                                    <input type="text" formControlName="state" class="form-control" 
                                         [ngClass]="{'is-invalid': isSubmitted && f.state.errors }" />
                                     <div *ngIf=" isSubmitted && f.state.errors" class="invalid-feedback">
                                         <div *ngIf="f.state.errors.required">State is required</div>
+                                        <div *ngIf="f.state.errors.pattern">Only alphabets is accepted</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>City<span class="text-danger">*</span></label>
-                                    <input type="text" formControlName="city" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-Z]+/,'')"
+                                    <input type="text" formControlName="city" class="form-control" 
                                         [ngClass]="{'is-invalid': isSubmitted && f.city.errors }" />
                                     <div *ngIf=" isSubmitted && f.city.errors" class="invalid-feedback">
                                         <div *ngIf="f.city.errors.required">City is required</div>
+                                        <div *ngIf="f.city.errors.pattern">Only alphabets is accepted</div>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +39,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Location<span class="text-danger">*</span></label>
-                                    <input type="text" formControlName="location" class="form-control" onkeyup="this.value=this.value.replace(/[^a-zA-Z]+/,'')"
+                                    <input type="text" formControlName="location" class="form-control" 
                                         [ngClass]="{'is-invalid': isSubmitted && f.location.errors }" />
                                     <div *ngIf=" isSubmitted && f.location.errors" class="invalid-feedback">
                                         <div *ngIf="f.location.errors.required">Location is required</div>
@@ -47,7 +49,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Pincode<span class="text-danger">*</span></label>
-                                    <input type="text" formControlName="pincode" class="form-control" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"
+                                    <input type="text" formControlName="pincode" class="form-control" 
                                         [ngClass]="{'is-invalid': isSubmitted && f.pincode.errors }" />
                                     <div *ngIf=" isSubmitted && f.pincode.errors" class="invalid-feedback">
                                         <div *ngIf="f.pincode.errors.required">Pincode is required</div>

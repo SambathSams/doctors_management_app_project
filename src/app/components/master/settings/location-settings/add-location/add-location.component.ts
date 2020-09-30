@@ -29,8 +29,8 @@ export class AddLocationComponent implements OnInit {
     //   condition : new FormControl()
     // });
     this.submitForm = this.formBuilder.group({
-      state: ['', Validators.required],
-      city: ['', Validators.required],
+      state: ['', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      city: ['',[Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
       pincode: ['', [Validators.required,Validators.minLength(6), Validators.maxLength(6)]],
       location: ['', Validators.required],
       status: ['true'],

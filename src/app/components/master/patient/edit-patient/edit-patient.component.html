@@ -23,13 +23,12 @@
                                     <div class="form-group">
                                         <label>Patient Name<span class="text-danger">*</span></label>
                                         <input type="text" formControlName="patient_name" class="form-control"
-                                        onkeyup="this.value=this.value.replace(/[^a-zA-Z]+/,'')"
                                             [ngClass]="{'is-invalid': isSubmitted && f.patient_name.errors }" />
                                         <div *ngIf=" isSubmitted && f.patient_name.errors" class="invalid-feedback">
                                             <div *ngIf="f.patient_name.errors.required">Patient Name is required</div>
+                                            <div *ngIf="f.patient_name.errors.pattern">Only alphabets is accepted</div>
                                         </div>
-                                        <div class="red-text hidden" *ngIf="isSubmitted" id="val_id1">Empty field is
-                                            not allowed</div>
+
                                     </div>
                                 </div>
                                 <div class="col">
@@ -50,11 +49,15 @@
                                     <div class="form-group">
                                         <label>Contact Number</label>
                                         <input type="text" formControlName="contactNumber" class="form-control"
-                                            onkeyup="this.value=this.value.replace(/^\s*|\$/g,'')"
                                             [ngClass]="{'is-invalid': isSubmitted && f.contactNumber.errors }" />
                                         <div *ngIf=" isSubmitted && f.contactNumber.errors" class="invalid-feedback">
                                             <div *ngIf="f.contactNumber.errors.required">Contact Number is required
                                             </div>
+                                            <div *ngIf="f.contactNumber.errors.minlength">Contact Number should have
+                                                minimun 10 numbers</div>
+                                            <div *ngIf="f.contactNumber.errors.maxlength">Contact Number should have
+                                                maximum 10 numbers</div>
+                                            <div *ngIf="f.contactNumber.errors.pattern">Only number is accepted</div>
                                         </div>
                                     </div>
                                 </div>

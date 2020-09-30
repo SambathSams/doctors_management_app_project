@@ -32,8 +32,9 @@ export class AddTimingComponent implements OnInit {
   get f() { return this.submitForm.controls; }
 
   // tslint:disable-next-line: typedef
-  addData(data){
-    console.log(data);
+  addData(formGroup: FormGroup,data){
+    Object.keys(formGroup.controls).forEach((key) => formGroup.get(key).setValue(formGroup.get(key).value.trim()));
+    this.isSubmitted = true;
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;

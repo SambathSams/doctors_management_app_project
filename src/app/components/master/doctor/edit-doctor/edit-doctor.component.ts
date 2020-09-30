@@ -22,9 +22,9 @@ export class EditDoctorComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
-      doctorName: ['', Validators.required],
+      doctorName: ['', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
       email: ['',[Validators.required, Validators.email]],
-      contactNumber: [''],
+      contactNumber: ['', [Validators.required, Validators.pattern("^[0-9]+$"), Validators.minLength(10), Validators.maxLength(10)]],
       active: ['', Validators.required]
     });
     this.returnUrl = '/master/doctor';
@@ -42,9 +42,9 @@ export class EditDoctorComponent implements OnInit {
       this.getData = res.data;
       console.log(res.data);
       this.submitForm = this.formBuilder.group({
-        doctorName: [res.data.doctorName, Validators.required],
-      email: [res.data.email, Validators.required],
-      contactNumber: [res.data.contactNumber],
+        doctorName: [res.data.doctorName, [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      email: [res.data.email, [Validators.required, Validators.email]],
+      contactNumber: [res.data.contactNumber, [Validators.required, Validators.pattern("^[0-9]+$"), Validators.minLength(10), Validators.maxLength(10)]],
       active: [res.data.active + '', Validators.required],
       });
     });
@@ -54,13 +54,13 @@ export class EditDoctorComponent implements OnInit {
   updateById(id, data) {
     this.isSubmitted = true;
 
-    if (data.doctorName.trim() != "") {
-      if (!($("#val_id1").hasClass("hidden")))
-        $("#val_id1").addClass("hidden");
-    } else {
-      $("#val_id1").removeClass("hidden");
-      return false;
-    }
+    // if (data.doctorName.trim() != "") {
+    //   if (!($("#val_id1").hasClass("hidden")))
+    //     $("#val_id1").addClass("hidden");
+    // } else {
+    //   $("#val_id1").removeClass("hidden");
+    //   return false;
+    // }
 
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';

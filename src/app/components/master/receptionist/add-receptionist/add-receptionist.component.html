@@ -16,11 +16,11 @@
                                 <div class="form-group">
                                     <label>Clinic Manager Name<span class="text-danger">*</span></label>
                                     <input type="text" formControlName="receptionistName" class="form-control"
-                                    onkeyup="this.value=this.value.replace(/[^a-zA-Z]+/,'')"
                                         [ngClass]="{'is-invalid': isSubmitted && f.receptionistName.errors }" />
                                     <div *ngIf=" isSubmitted && f.receptionistName.errors" class="invalid-feedback">
                                         <div *ngIf="f.receptionistName.errors.required">Clinic Manager Name is required
                                         </div>
+                                        <div *ngIf="f.receptionistName.errors.pattern">Only alphabets is accepted</div>
                                     </div>
                                 </div>
                             </div>

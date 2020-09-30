@@ -21,15 +21,14 @@
                                     <div class="form-group">
                                         <label>Clinic Manager Name<span class="text-danger">*</span></label>
                                         <input type="text" formControlName="receptionistName" class="form-control"
-                                            onkeyup="this.value=this.value.replace(/^\s*|\$/g,'')"
                                             [ngClass]="{'is-invalid': isSubmitted && f.receptionistName.errors }" />
                                         <div *ngIf=" isSubmitted && f.receptionistName.errors" class="invalid-feedback">
                                             <div *ngIf="f.receptionistName.errors.required">Clinic Manager Name is
                                                 required
                                             </div>
+                                            <div *ngIf="f.receptionistName.errors.pattern">Only alphabets is accepted
+                                            </div>
                                         </div>
-                                        <div class="red-text hidden" *ngIf="isSubmitted" id="val_id1">Empty field is
-                                            not allowed</div>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -70,8 +69,7 @@
                                 </div>
                             </div>
                             <div class="m-t-20 text-center">
-                                <button 
-                                    class="btn btn-primary submit-btn">Add</button>
+                                <button class="btn btn-primary submit-btn">Add</button>
                             </div>
                         </form>
                     </div>

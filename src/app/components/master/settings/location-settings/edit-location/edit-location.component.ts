@@ -22,9 +22,9 @@ export class EditLocationComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      pincode: ['', Validators.required],
+      state: ['', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      city: ['', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      pincode: ['', [Validators.required,Validators.minLength(6), Validators.maxLength(6)]],
       location: ['', Validators.required],
       status: ['', Validators.required],
     });
@@ -43,11 +43,11 @@ export class EditLocationComponent implements OnInit {
         this.getData = res.data;
         console.log(res.data);
         this.submitForm = this.formBuilder.group({
-          state: res.data.state,
-      city: res.data.city,
-      pincode: res.data.pincode,
-      location: res.data.location,
-      status: res.data.status + '',
+          state: [res.data.state ,[Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      city: [res.data.city, [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      pincode: [res.data.pincode, [Validators.required,Validators.minLength(6), Validators.maxLength(6)]],
+      location: [res.data.location, Validators.required],
+      status: [res.data.status+ '', Validators.required],
         });
       });
   }
@@ -55,37 +55,6 @@ export class EditLocationComponent implements OnInit {
   // tslint:disable-next-line: typedef
   updateByIdData(id, data){
     this.isSubmitted = true;
-    if (data.state.trim() != "") {
-      if (!($("#val_id1").hasClass("hidden")))
-        $("#val_id1").addClass("hidden");
-    } else {
-      $("#val_id1").removeClass("hidden");
-      return false;
-    }
-
-    if (data.city.trim() != "") {
-      if (!($("#val_id2").hasClass("hidden")))
-        $("#val_id2").addClass("hidden");
-    } else {
-      $("#val_id2").removeClass("hidden");
-      return false;
-    }
-
-    if (data.location.trim() != "") {
-      if (!($("#val_id3").hasClass("hidden")))
-        $("#val_id3").addClass("hidden");
-    } else {
-      $("#val_id3").removeClass("hidden");
-      return false;
-    }
-
-    // if (data.pincode.trim() != "") {
-    //   if (!($("#val_id4").hasClass("hidden")))
-    //     $("#val_id4").addClass("hidden");
-    // } else {
-    //   $("#val_id4").removeClass("hidden");
-    //   return false;
-    // }
 
 
     if (this.submitForm.invalid) {

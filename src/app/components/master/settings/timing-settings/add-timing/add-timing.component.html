@@ -10,16 +10,21 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <p *ngIf="message" class="text-center error">{{message}}</p>
-                    <form class="form" [formGroup]="submitForm" (ngSubmit)="addData(submitForm.value)">
+                    <!-- <p *ngIf="message" class="text-center error">{{message}}</p> -->
+                    <form class="form" [formGroup]="submitForm" (ngSubmit)="addData(submitForm,submitForm.value)">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label>Room<span class="text-danger">*</span></label>
-                                    <input class="form-control" type="number" required autofocus="" formControlName="roomNumber">
+                                    <!-- <input class="form-control" type="text" required autofocus="" formControlName="roomNumber">
                                     <div *ngIf="f.roomNumber.errors" class="help-block">
                                         <div *ngIf="f.roomNumber.errors.required">Room Number is required</div>
-                                  </div>
+                                  </div> -->
+                                    <input type="text" formControlName="roomNumber" class="form-control"
+                                        [ngClass]="{'is-invalid': isSubmitted && f.roomNumber.errors }" />
+                                    <div *ngIf=" isSubmitted && f.roomNumber.errors" class="invalid-feedback">
+                                        <div *ngIf="f.roomNumber.errors.required">Room Number is required</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -29,8 +34,9 @@
                                     <label>Clinic StartTime<span class="text-danger">*</span></label>
                                     <input class="form-control" type="time" required formControlName="clinicStartTime">
                                     <div *ngIf="f.clinicStartTime.errors" class="help-block">
-                                        <div *ngIf="f.clinicStartTime.errors.required">Clinic StartTime is required</div>
-                                  </div>
+                                        <div *ngIf="f.clinicStartTime.errors.required">Clinic StartTime is required
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col">
@@ -39,7 +45,7 @@
                                     <input class="form-control" type="time" required formControlName="clinicEndTime">
                                     <div *ngIf="f.clinicEndTime.errors" class="help-block">
                                         <div *ngIf="f.clinicEndTime.errors.required">Clinic EndTime is required</div>
-                                  </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +56,7 @@
                                     <input class="form-control" type="time" required formControlName="roomStartTime">
                                     <div *ngIf="f.roomStartTime.errors" class="help-block">
                                         <div *ngIf="f.roomStartTime.errors.required">Room StartTime is required</div>
-                                  </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col">
@@ -59,12 +65,12 @@
                                     <input class="form-control" type="time" required formControlName="roomEndTime">
                                     <div *ngIf="f.roomEndTime.errors" class="help-block">
                                         <div *ngIf="f.roomEndTime.errors.required">Room EndTime is required</div>
-                                  </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="m-t-20 text-center">
-                            <button [disabled]="isSubmitted === true || submitForm.invalid" class="btn btn-primary submit-btn">Add</button>
+                            <button class="btn btn-primary submit-btn">Add</button>
                         </div>
                     </form>
                 </div>

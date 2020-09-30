@@ -22,8 +22,8 @@ export class EditReceptionistComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
-      receptionistName: ['', Validators.required],
-      email: ['', Validators.required],
+      receptionistName: ['', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      email: ['', [Validators.required, Validators.email]],
       status: ['', Validators.required]
     });
     this.returnUrl = '/master/receptionist';
@@ -41,9 +41,9 @@ export class EditReceptionistComponent implements OnInit {
       this.getData = res.data;
       console.log(res.data);
       this.submitForm = this.formBuilder.group({
-        receptionistName: [res.data.receptionistName, Validators.required],
-      email: [res.data.email, Validators.required],
-      status: [res.data.status + '', Validators.required],
+        receptionistName: [res.data.receptionistName, [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+        email: [res.data.email, [Validators.required, Validators.email]],
+        status: [res.data.status + '', Validators.required],
       });
     });
   }
@@ -51,27 +51,21 @@ export class EditReceptionistComponent implements OnInit {
   // tslint:disable-next-line: typedef
   updateById(id, data) {
     this.isSubmitted = true;
-    if (data.receptionistName.trim() != "") {
-      if (!($("#val_id1").hasClass("hidden")))
-        $("#val_id1").addClass("hidden");
-    } else {
-      $("#val_id1").removeClass("hidden");
-      return false;
-    }
+
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;
     }
     // else {
-      this.service.updateById(id, data).subscribe(response => {
-        if (response.data) {
-          this.router.navigate([this.returnUrl]);
-        }
-        else {
-          this.isSubmitted = false;
-          this.message = 'Failed to submit the form.';
-        }
-      });
+    this.service.updateById(id, data).subscribe(response => {
+      if (response.data) {
+        this.router.navigate([this.returnUrl]);
+      }
+      else {
+        this.isSubmitted = false;
+        this.message = 'Failed to submit the form.';
+      }
+    });
     // }
   }
 

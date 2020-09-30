@@ -25,9 +25,9 @@ export class AddPatientComponent implements OnInit {
   initForm() {
     this.isSubmitted = false;
     this.submitForm = this.formBuilder.group({
-      patient_name: new FormControl('', Validators.required),
+      patient_name: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      contactNumber: new FormControl('', [Validators.required,Validators.minLength(10)]),
+      contactNumber: new FormControl('', [Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]+$"), Validators.maxLength(10)]),
     });
   }
 
