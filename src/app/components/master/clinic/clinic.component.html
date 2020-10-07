@@ -20,7 +20,7 @@
                     </div>
                     <div *ngIf="undefined !== getAll">
                         <div class="table-responsive">
-                            <table class="table table-border table-striped custom-table datatable mb-0">
+                            <table datatable [dtOptions]="dtOptions" class="table table-border table-striped custom-table datatable mb-0 row-border hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,7 +15,7 @@ import { PatientComponent } from './components/master/patient/patient.component'
 import { ReceptionistComponent } from './components/master/receptionist/receptionist.component';
 import { RoomComponent } from './components/master/room/room.component';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
-
+import { DataTablesModule } from 'angular-datatables';
 import { AuthGuard } from './services/auth/auth.guard';
 import { LocationSettingsComponent } from './components/master/settings/location-settings/location-settings.component';
 import { SpecializationSettingsComponent } from './components/master/settings/specialization-settings/specialization-settings.component';
@@ -102,7 +102,9 @@ import { ViewPatientComponent } from './components/master/patient/view-patient/v
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ShowHidePasswordModule
+    ShowHidePasswordModule,
+    GooglePlaceModule,
+    DataTablesModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
