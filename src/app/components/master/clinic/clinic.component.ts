@@ -13,6 +13,7 @@ export class ClinicComponent implements OnInit {
   getId;
   index;
   lengthh;
+  selected: any;
 
   constructor(
     private service: ClinicService,
@@ -39,6 +40,27 @@ export class ClinicComponent implements OnInit {
         console.log('lengthhhhhh',this.getAll.length)
       });
   }
+
+  get_by_status(data) {
+    const temp: any = {
+      status: data
+    }
+    this.service.getByStatus(temp).subscribe(res => {
+        this.getAll = res.data;
+        this.lengthh = this.getAll.length;
+        console.log('lengthhhhhh',this.getAll.length)
+      });
+  }
+
+  changeCity() {
+    console.log(this.selected)
+    this.get_by_status(this.selected)
+  }
+
+  clearData() {
+    this.getAllData();
+  }
+
 
   // tslint:disable-next-line: typedef
   deleteOne(id) {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient} from '@angular/common/http';
-import { baseURL } from 'constants';
+import { baseURL, baseLocalURL } from '../../../../../constants';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { baseURL } from 'constants';
 export class ClinicService {
 
   readonly baseUrl = baseURL;
+  readonly baseLocal = baseLocalURL;
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
@@ -31,5 +32,10 @@ export class ClinicService {
 
   deleteById(id): Observable<any> {
     return this.http.delete(this.baseUrl + 'api/asset' + '/' + id);
+  }
+
+  getByStatus(data): Observable<any> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.post(this.baseLocal + 'api/assets',data,httpOptions)
   }
 }
