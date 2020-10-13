@@ -37,7 +37,10 @@
                                         <td>{{getOne.city}}</td>
                                         <td>{{getOne.pincode}}</td>
                                         <td>{{getOne.location}}</td>
-                                        <td>{{getOne.status}}</td>
+                                        <td>
+                                            <p *ngIf="getOne.status == true">Active</p>
+                                            <p *ngIf="getOne.status == false">Inactive</p>
+                                        </td>
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">
                                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown"
