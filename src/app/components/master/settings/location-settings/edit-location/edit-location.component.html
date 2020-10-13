@@ -19,6 +19,19 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
+                                        <label>Location<span class="text-danger">*</span></label>
+                                        <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" formControlName="full_location" class="form-control" 
+                                         placeholder="enter location"   [ngClass]="{'is-invalid': isSubmitted && f.full_location.errors }" />
+                                        <div *ngIf=" isSubmitted && f.full_location.errors" class="invalid-feedback">
+                                            <div *ngIf="f.full_location.errors.required">Location is required</div>
+                                            <!-- <div *ngIf="f.full_location.errors.pattern">Only alphabets is accepted</div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
                                         <label>State<span class="text-danger">*</span></label>
                                         <input type="text" formControlName="state" class="form-control"
                                             [ngClass]="{'is-invalid': isSubmitted && f.state.errors }" />
