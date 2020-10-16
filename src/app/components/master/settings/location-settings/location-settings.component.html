@@ -23,6 +23,7 @@
                             <table class="table table-border table-striped custom-table datatable mb-0">
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>State</th>
                                         <th>City</th>
                                         <th>Pincode</th>
@@ -32,12 +33,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let getOne of getAll">
+                                    <tr *ngFor="let getOne of getAll; let i = index">
+                                        <td>{{i+1}}</td>
                                         <td>{{getOne.state}}</td>
                                         <td>{{getOne.city}}</td>
                                         <td>{{getOne.pincode}}</td>
                                         <td>{{getOne.location}}</td>
-                                        <td>
+                                        <td> 
                                             <p *ngIf="getOne.status == true">Active</p>
                                             <p *ngIf="getOne.status == false">Inactive</p>
                                         </td>
@@ -53,7 +55,7 @@
                                                         routerLinkActive="active"><i class="fa fa-pencil m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                                        data-target="#delete" (click)="getIdData(getOne._id)"><i
+                                                        data-target="#delete" (click)="getIdData(getOne._id,i)"><i
                                                             class="fa fa-trash-o m-r-5"></i>
                                                         Delete</a>
                                                 </div>

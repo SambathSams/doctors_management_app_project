@@ -48,7 +48,7 @@
                                 <tbody>
                                     <tr *ngFor="let getOne of getAll; let i = index">
                                         <td>{{i+1}}</td>
-                                        <td>{{getOne.clinicName}}</td>
+                                        <td>{{(getOne.clinicName.length > 4)? (getOne.clinicName | slice:0:3)+'..': (getOne.clinicName) }}</td>
                                         <td>
                                             <a routerLink="addroom/{{getOne._id}}"
                                                 class="btn btn btn-primary btn-rounded float-centre"><i

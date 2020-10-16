@@ -23,6 +23,7 @@
                             <table class="table table-border table-striped custom-table datatable mb-0">
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th>Room Number</th>
                                         <th>Clinic Timing</th>
                                         <th>Room Timing</th>
@@ -31,7 +32,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let getOne of getAll">
+                                    <tr *ngFor="let getOne of getAll; let i = index">
+                                        <td>{{i+1}}</td>
                                         <td>{{getOne.roomNumber}}</td>
                                         <td>{{getOne.clinicStartTime}} to {{getOne.clinicEndTime}}</td>
                                         <td>{{getOne.roomStartTime}} to {{getOne.roomEndTime}}</td>
@@ -50,7 +52,7 @@
                                                         routerLinkActive="active"><i class="fa fa-pencil m-r-5"></i>
                                                         Edit</a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                                        data-target="#delete" (click)="getIdData(getOne._id)"><i
+                                                        data-target="#delete" (click)="getIdData(getOne._id, i)"><i
                                                             class="fa fa-trash-o m-r-5"></i>
                                                         Delete</a>
                                                 </div>

@@ -8,7 +8,7 @@ import { ClinicService } from 'src/app/services/master/clinic/clinic.service';
   selector: 'app-add-clinic',
   templateUrl: './add-clinic.component.html',
   styleUrls: ['./add-clinic.component.css']
-})
+}) 
 export class AddClinicComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private service: ClinicService ) { }
@@ -20,10 +20,11 @@ export class AddClinicComponent implements OnInit {
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
       clinicName: ['', Validators.required],
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      pincode: ['', Validators.required],
+      state: ['', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      city: ['', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
       location: ['', Validators.required],
+      status: ['true'],
       comment: ['']
     });
     this.returnUrl = '/master/clinic';
@@ -33,8 +34,10 @@ export class AddClinicComponent implements OnInit {
   get f() { return this.submitForm.controls; }
 
   // tslint:disable-next-line: typedef
-  addData(data){
-    console.log(data);
+  addData(formGroup: FormGroup, data){
+    // console.log(data);
+    Object.keys(formGroup.controls).forEach((key) => formGroup.get(key).setValue(formGroup.get(key).value.trim()));
+    this.isSubmitted = true;
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;

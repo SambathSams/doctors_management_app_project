@@ -22,9 +22,9 @@ export class EditClinicComponent implements OnInit {
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
       clinicName: ['', Validators.required],
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      pincode: ['', Validators.required],
+      state: ['', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      city: ['', [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+      pincode: ['', [Validators.required,Validators.minLength(6), Validators.maxLength(6)]],
       location: ['', Validators.required],
       comment: [''],
       status: ['', Validators.required]
@@ -45,10 +45,11 @@ export class EditClinicComponent implements OnInit {
       console.log(res.data);
       this.submitForm = this.formBuilder.group({
         clinicName: [res.data.clinicName, Validators.required],
-        state: [res.data.state, Validators.required],
-        city: [res.data.city, Validators.required],
-        pincode: [res.data.pincode, Validators.required],
+        state: [res.data.state ,[Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+        city: [res.data.city, [Validators.required, Validators.pattern("^[a-zA-Z\\-\\s]+$")]],
+        pincode: [res.data.pincode, [Validators.required,Validators.minLength(6), Validators.maxLength(6)]],
         location: [res.data.location, Validators.required],
+        // status: [res.data.status+ '', Validators.required],
         comment: [res.data.comment],
         status: [res.data.status + '', Validators.required]
       });
@@ -57,6 +58,7 @@ export class EditClinicComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   updateById(id, data) {
+    this.isSubmitted = true;
     if (this.submitForm.invalid) {
       this.message = 'Invalid form submission.';
       return;

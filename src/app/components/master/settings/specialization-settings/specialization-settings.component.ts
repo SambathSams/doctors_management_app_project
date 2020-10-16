@@ -11,7 +11,7 @@ export class SpecializationSettingsComponent implements OnInit {
   getAll;
   getId;
   lengthh;
-
+  index;
   constructor(
     private service: SpecializationService,
     private appComponent: AppComponent
@@ -24,8 +24,9 @@ export class SpecializationSettingsComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  getIdData(id) {
+  getIdData(id,i) {
     this.getId = id;
+    this.index = i;
   }
 
   // tslint:disable-next-line: typedef
@@ -41,5 +42,6 @@ export class SpecializationSettingsComponent implements OnInit {
     this.service.deleteById(id).subscribe(res => {
       this.getId = undefined;
     });
+    this.getAll.splice(this.index,1);
   }
 }

@@ -24,7 +24,7 @@ export class AddSpecializationComponent implements OnInit {
     // });
     this.submitForm = this.formBuilder.group({
       specialization: ['', Validators.required],
-      condition: ['']
+      // condition: ['']
     });
     this.returnUrl = '/master/settings/specialization';
   }

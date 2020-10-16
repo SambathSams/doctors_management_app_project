@@ -12,7 +12,7 @@ export class LocationSettingsComponent implements OnInit {
   getAll;
   getId;
   lengthh;
-
+  index;
   constructor(
     private service: LocationService,
     private appComponent: AppComponent
@@ -25,9 +25,11 @@ export class LocationSettingsComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  getIdData(id) {
+  getIdData(id,i) {
     this.getId = id;
+    this.index = i;
   }
+
 
   // tslint:disable-next-line: typedef
   getAllData() {
@@ -42,6 +44,7 @@ export class LocationSettingsComponent implements OnInit {
     this.service.deleteById(id).subscribe(res => {
       this.getId = undefined;
     });
+    this.getAll.splice(this.index,1);
   }
 
 }

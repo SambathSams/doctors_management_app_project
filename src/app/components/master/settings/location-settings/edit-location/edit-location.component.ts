@@ -71,7 +71,7 @@ export class EditLocationComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  getByIdData(id) {
+  getByIdData(id) { 
     this.service.getById(id).subscribe(res => {
         console.log(res.data);
         this.getData = res.data;

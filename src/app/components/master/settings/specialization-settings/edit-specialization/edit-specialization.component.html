@@ -30,14 +30,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Condition</label>
                                         <input class="form-control" type="text" formControlName="condition">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="m-t-20 text-center">
+                                <button routerLink="/master/settings/specialization"
+                                class="btn btn-primary submit-btn">Cancel</button>
                                 <button [disabled]="isSubmitted === true || submitForm.invalid"
                                     class="btn btn-primary submit-btn">Update</button>
                             </div>

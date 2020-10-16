@@ -11,6 +11,7 @@ export class ConditionSettingsComponent implements OnInit {
   getAll;
   getId;
   lengthh;
+  index;
   constructor(private service: ConditionService,private appComponent: AppComponent) { }
 
   ngOnInit(): void {
@@ -19,8 +20,9 @@ export class ConditionSettingsComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  getIdData(id) {
+  getIdData(id,i) {
     this.getId = id;
+    this.index = i;
   }
 
   // tslint:disable-next-line: typedef
@@ -36,5 +38,6 @@ export class ConditionSettingsComponent implements OnInit {
     this.service.deleteById(id).subscribe(res => {
       this.getId = undefined;
     });
+    this.getAll.splice(this.index,1);
   }
 }

@@ -22,7 +22,7 @@ export class EditSpecializationComponent implements OnInit {
   ngOnInit(): void {
     this.submitForm = this.formBuilder.group({
       specialization: ['', Validators.required],
-      condition: [''],
+      // condition: [''],
       status: ['', Validators.required]
     });
     this.returnUrl = '/master/settings/specialization';
@@ -41,7 +41,7 @@ export class EditSpecializationComponent implements OnInit {
         console.log(res.data);
         this.submitForm = this.formBuilder.group({
           specialization: [res.data.specialization, Validators.required],
-          condition: [res.data.condition]
+          // condition: [res.data.condition]
         });
       });
   }
