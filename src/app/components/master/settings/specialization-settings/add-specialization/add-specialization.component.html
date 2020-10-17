@@ -1,0 +1,40 @@
+<div class="main-wrapper">
+    <app-header></app-header>
+    <app-sidebar-settings></app-sidebar-settings>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Add Specialization</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <form class="form" [formGroup]="submitForm" (ngSubmit)="addData(submitForm,submitForm.value)">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Specialization<span class="text-danger">*</span></label>
+                                  <input type="text" formControlName="specialization" class="form-control"
+                                  [ngClass]="{'is-invalid': isSubmitted && f.specialization.errors }" />
+                              <div *ngIf=" isSubmitted && f.specialization.errors" class="invalid-feedback">
+                                  <div *ngIf="f.specialization.errors.required">Specialization is required</div>
+                              </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Condition</label>
+                                    <input class="form-control" type="text" formControlName="condition">
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="m-t-20 text-center">
+                            <button  class="btn btn-primary submit-btn">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

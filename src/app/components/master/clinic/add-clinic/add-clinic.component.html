@@ -1,0 +1,89 @@
+<div class="main-wrapper">
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Add Clinic</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <!-- <p *ngIf="message" class="text-center error">{{message}}</p> -->
+                    <form class="form" [formGroup]="submitForm" (ngSubmit)="addData(submitForm, submitForm.value)">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Clinic Name<span class="text-danger">*</span></label>
+                                  <input type="text" formControlName="clinicName" class="form-control"
+                                  [ngClass]="{'is-invalid': isSubmitted && f.clinicName.errors }" />
+                              <div *ngIf=" isSubmitted && f.clinicName.errors" class="invalid-feedback">
+                                  <div *ngIf="f.clinicName.errors.required">Clinic Name is required</div>
+                                  <!-- <div *ngIf="f.clinicName.errors.pattern">Only alphabets is accepted</div> -->
+                              </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>State<span class="text-danger">*</span></label>
+                                    <input  type="text" formControlName="state" class="form-control" 
+                                        [ngClass]="{'is-invalid': isSubmitted && f.state.errors }" />
+                                    <div *ngIf=" isSubmitted && f.state.errors" class="invalid-feedback">
+                                        <div *ngIf="f.state.errors.required">State is required</div>
+                                        <div *ngIf="f.state.errors.pattern">Only alphabets is accepted</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>City<span class="text-danger">*</span></label>
+                                    <input type="text" formControlName="city" class="form-control" 
+                                        [ngClass]="{'is-invalid': isSubmitted && f.city.errors }" />
+                                    <div *ngIf=" isSubmitted && f.city.errors" class="invalid-feedback">
+                                        <div *ngIf="f.city.errors.required">City is required</div>
+                                        <div *ngIf="f.city.errors.pattern">Only alphabets is accepted</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Pincode<span class="text-danger">*</span></label>
+                                    <input type="text" formControlName="pincode" class="form-control" 
+                                        [ngClass]="{'is-invalid': isSubmitted && f.pincode.errors }" />
+                                    <div *ngIf=" isSubmitted && f.pincode.errors" class="invalid-feedback">
+                                        <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                                        <div *ngIf="f.pincode.errors.minlength">Pincode Number should have minimun 6 numbers</div>
+                                        <div *ngIf="f.pincode.errors.maxlength">Pincode Number should have maximum 6 numbers</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Location<span class="text-danger">*</span></label>
+                                    <input type="text" formControlName="location" class="form-control" 
+                                        [ngClass]="{'is-invalid': isSubmitted && f.location.errors }" />
+                                    <div *ngIf=" isSubmitted && f.location.errors" class="invalid-feedback">
+                                        <div *ngIf="f.location.errors.required">Location is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <label>Comment</label>
+                                    <input class="form-control" type="text" formControlName="comment">
+                            </div>
+                        </div>
+                        <div class="m-t-20 text-center">
+                            <button  class="btn btn-primary submit-btn">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,121 @@
+<div class="main-wrapper">
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+    <div class="page-wrapper">
+
+        <div class="content">
+            <div class="spinner-border text-primary" role="status" *ngIf="undefined === getData">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div *ngIf="undefined !== getData">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title">Edit Clinic</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <!-- <p *ngIf="message" class="text-center error">{{message}}</p> -->
+                        <form class="form" [formGroup]="submitForm" (ngSubmit)="updateById(id, submitForm.value)">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Clinic Name<span class="text-danger">*</span></label>
+                                      <input type="text" formControlName="clinicName" class="form-control"
+                                      [ngClass]="{'is-invalid': isSubmitted && f.clinicName.errors }" />
+                                  <div *ngIf=" isSubmitted && f.clinicName.errors" class="invalid-feedback">
+                                      <div *ngIf="f.clinicName.errors.required">Clinic Name is required</div>
+                                      <!-- <div *ngIf="f.clinicName.errors.pattern">Only alphabets is accepted</div> -->
+                                  </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>State<span class="text-danger">*</span></label>
+                                        <input type="text" formControlName="state" class="form-control"
+                                            [ngClass]="{'is-invalid': isSubmitted && f.state.errors }" />
+                                        <div *ngIf=" isSubmitted && f.state.errors" class="invalid-feedback">
+                                            <div *ngIf="f.state.errors.required">State is required</div>
+                                            <div *ngIf="f.state.errors.pattern">Only alphabets is accepted</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>City<span class="text-danger">*</span></label>
+                                        <input type="text" formControlName="city" class="form-control"
+                                            [ngClass]="{'is-invalid': isSubmitted && f.city.errors }" />
+                                        <div *ngIf=" isSubmitted && f.city.errors" class="invalid-feedback">
+                                            <div *ngIf="f.city.errors.required">City is required</div>
+                                            <div *ngIf="f.city.errors.pattern">Only alphabets is accepted</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Pincode<span class="text-danger">*</span></label>
+                                        <input type="text" formControlName="pincode" class="form-control"
+                                            [ngClass]="{'is-invalid': isSubmitted && f.pincode.errors }" />
+                                        <div *ngIf=" isSubmitted && f.pincode.errors" class="invalid-feedback">
+                                            <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                                            <div *ngIf="f.pincode.errors.minlength">Pincode Number should have minimun 6
+                                                numbers</div>
+                                            <div *ngIf="f.pincode.errors.maxlength">Pincode Number should have maximum 6
+                                                numbers</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Location<span class="text-danger">*</span></label>
+                                        <input type="text" formControlName="location" class="form-control"
+                                            [ngClass]="{'is-invalid': isSubmitted && f.location.errors }" />
+                                        <div *ngIf=" isSubmitted && f.location.errors" class="invalid-feedback">
+                                            <div *ngIf="f.location.errors.required">Location is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label>Comment</label>
+                                        <input class="form-control" type="text" formControlName="comment">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="display-block">Status<span class="text-danger">*</span></label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" formControlName="status"
+                                                id="active" value="true">
+                                            <label class="form-check-label" for="active">
+                                                Active
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" formControlName="status"
+                                                id="inactive" value="false">
+                                            <label class="form-check-label" for="inactive">
+                                                Inactive
+                                            </label>
+                                        </div>
+                                        <div *ngIf="f.status.errors" class="help-block">
+                                            <div *ngIf="f.status.errors.required">Status is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-t-20 text-center">
+                                <button  class="btn btn-primary submit-btn" routerLink="/master/clinic" >Cancel</button>
+                                <button  class="btn btn-primary submit-btn">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
