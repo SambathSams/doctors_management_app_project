@@ -44,9 +44,12 @@ import { AddRoomComponent } from './components/master/room/add-room/add-room.com
 import { AddDoctorComponent } from './components/master/doctor/add-doctor/add-doctor.component';
 import { EditDoctorComponent } from './components/master/doctor/edit-doctor/edit-doctor.component';
 import { ViewDoctorComponent } from './components/master/doctor/view-doctor/view-doctor.component';
+<<<<<<< HEAD
 import { BannerComponent } from './components/master/banner/banner.component';
 import { AddBannerComponent } from './components/master/banner/add-banner/add-banner.component';
 import { EditBannerComponent } from './components/master/banner/edit-banner/edit-banner.component';
+=======
+>>>>>>> 94e284928f9d946c67c013c2363ab3e52a8442d0
 import { AddReceptionistComponent } from './components/master/receptionist/add-receptionist/add-receptionist.component';
 import { EditReceptionistComponent } from './components/master/receptionist/edit-receptionist/edit-receptionist.component';
 import { ViewReceptionistComponent } from './components/master/receptionist/view-receptionist/view-receptionist.component';
@@ -97,10 +100,14 @@ import { ViewPatientComponent } from './components/master/patient/view-patient/v
     ViewReceptionistComponent,
     AddPatientComponent,
     EditPatientComponent,
+<<<<<<< HEAD
     ViewPatientComponent,
     BannerComponent,
     AddBannerComponent,
     EditBannerComponent
+=======
+    ViewPatientComponent
+>>>>>>> 94e284928f9d946c67c013c2363ab3e52a8442d0
   ],
   imports: [
     BrowserModule,
