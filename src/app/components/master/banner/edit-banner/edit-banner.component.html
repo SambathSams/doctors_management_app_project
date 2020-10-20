@@ -1,0 +1,92 @@
+<div class="main-wrapper">
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+    <div class="page-wrapper">
+
+        <div class="content">
+            <div class="spinner-border text-primary" role="status" *ngIf="undefined === getData">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div *ngIf="undefined !== getData">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title">Edit Doctor</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form class="form" [formGroup]="submitForm" (ngSubmit)="updateById(id, submitForm.value)">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Banner Title<span class="text-danger">*</span></label>
+                                        <input type="text" formControlName="bannerTitle" class="form-control"
+                                            [ngClass]="{'is-invalid': isSubmitted && f.bannerTitle.errors }" />
+                                        <div *ngIf=" isSubmitted && f.bannerTitle.errors" class="invalid-feedback">
+                                            <div *ngIf="f.bannerTitle.errors.required">Banner Title is required</div>
+                                            <div *ngIf="f.bannerTitle.errors.pattern">Only alphabets is accepted</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Category<span class="text-danger">*</span></label>
+                                        <select class="custom-select"
+                                            formControlName="categoryName" [ngClass]="{'is-invalid': isSubmitted && f.categoryName.errors }">
+                                            <option value="">Choose your category</option>
+                                            <option *ngFor="let category of Category" value="{{categoryName}}" [ngValue]="category">{{category}}</option>
+                                        </select>
+                                        <div *ngIf=" isSubmitted && f.categoryName.errors" class="invalid-feedback">
+                                            <div *ngIf="f.categoryName.errors.required">Category is required</div>
+                                            <!-- <div *ngIf="f.email.errors.email">Email must be a valid email address</div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- <div class="col">
+                                    <div class="form-group">
+                                        <label>Browse Image<span class="text-danger">*</span></label>
+                                        <input formControlName="file" id="file" type="file" class="form-control"
+                                            (change)="onFileChange($event)">
+                                        <div *ngIf=" isSubmitted && f.file.errors" class="invalid-feedback">
+                                            <div *ngIf="f.file.errors.required">Image is required</div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="display-block">Status<span class="text-danger">*</span></label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" formControlName="active"
+                                                id="active" value="true">
+                                            <label class="form-check-label" for="active">
+                                                Active
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" formControlName="active"
+                                                id="inactive" value="false">
+                                            <label class="form-check-label" for="inactive">
+                                                Inactive
+                                            </label>
+                                        </div>
+                                        <div *ngIf="f.active.errors" class="help-block">
+                                            <div *ngIf="f.active.errors.required">Status is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-t-20 text-center">
+                                <button 
+                                    class="btn btn-primary submit-btn" routerLink="/master/doctor">Cancel</button>
+                                <button 
+                                    class="btn btn-primary submit-btn">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
