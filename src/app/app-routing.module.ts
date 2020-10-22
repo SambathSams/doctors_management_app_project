@@ -45,10 +45,11 @@ import { AddPatientComponent } from './components/master/patient/add-patient/add
 import { EditPatientComponent } from './components/master/patient/edit-patient/edit-patient.component';
 import { ViewPatientComponent } from './components/master/patient/view-patient/view-patient.component';
 import { PatientComponent } from './components/master/patient/patient.component';
+import { SignInComponent } from './components/clinic/sign-in/sign-in.component';
 
 const routes: Routes = [
   {path : 'login', component : LoginComponent},
-
+  {path: 'clinic-signIn', component: SignInComponent},
   { path: 'master',  canActivate: [AuthGuard],  children : [
     {path: '', component: DashboardComponent},
     {path: 'dashboard', component: DashboardComponent},

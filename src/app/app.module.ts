@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/master/dashboard/dashboard.component';
@@ -53,6 +54,7 @@ import { ViewReceptionistComponent } from './components/master/receptionist/view
 import { AddPatientComponent } from './components/master/patient/add-patient/add-patient.component';
 import { EditPatientComponent } from './components/master/patient/edit-patient/edit-patient.component';
 import { ViewPatientComponent } from './components/master/patient/view-patient/view-patient.component';
+import { SignInComponent } from './components/clinic/sign-in/sign-in.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +102,8 @@ import { ViewPatientComponent } from './components/master/patient/view-patient/v
     ViewPatientComponent,
     BannerComponent,
     AddBannerComponent,
-    EditBannerComponent
+    EditBannerComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +113,8 @@ import { ViewPatientComponent } from './components/master/patient/view-patient/v
     HttpClientModule,
     ShowHidePasswordModule,
     GooglePlaceModule,
-    DataTablesModule
+    DataTablesModule,
+    // ToastrModule.forRoot(),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

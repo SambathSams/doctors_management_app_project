@@ -38,6 +38,21 @@ export class AddReceptionistComponent implements OnInit {
       return;
     }
     // else{
+      const temp: any = {
+        name: data.receptionistName,
+        email: data.email,
+      };
+      this.service.addClinicManager(temp).subscribe(response => {
+        // console.log(response)
+        if (response.success){
+          // this.router.navigate([this.returnUrl]);
+        }
+        else{
+          this.isSubmitted = false;
+          this.message = 'Failed to submit the form.';
+          console.log(data);
+        }
+      });
       this.service.create(data).subscribe(response => {
         if (response.data){
           this.router.navigate([this.returnUrl]);
