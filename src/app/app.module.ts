@@ -48,6 +48,8 @@ import { ViewDoctorComponent } from './components/master/doctor/view-doctor/view
 import { BannerComponent } from './components/master/banner/banner.component';
 import { AddBannerComponent } from './components/master/banner/add-banner/add-banner.component';
 import { EditBannerComponent } from './components/master/banner/edit-banner/edit-banner.component';
+import { ViewBannerComponent } from './components/master/banner/view-banner/view-banner.component';
+
 import { AddReceptionistComponent } from './components/master/receptionist/add-receptionist/add-receptionist.component';
 import { EditReceptionistComponent } from './components/master/receptionist/edit-receptionist/edit-receptionist.component';
 import { ViewReceptionistComponent } from './components/master/receptionist/view-receptionist/view-receptionist.component';
@@ -103,6 +105,7 @@ import { SignInComponent } from './components/clinic/sign-in/sign-in.component';
     BannerComponent,
     AddBannerComponent,
     EditBannerComponent,
+    ViewBannerComponent,
     SignInComponent
   ],
   imports: [

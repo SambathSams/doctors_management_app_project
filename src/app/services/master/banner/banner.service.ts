@@ -13,21 +13,25 @@ export class BannerService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get<any>(this.baseLocal + 'api/banner');
+    return this.http.get<any>(this.baseUrl + 'api/banner');
   }
 
   create(data): Observable<any> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post(this.baseLocal + 'api/banner', data, httpOptions);
+    return this.http.post(this.baseUrl + 'api/banner', data, httpOptions);
   }
 
   getById(id): Observable<any> {
-    return this.http.get(this.baseLocal + 'api/banner' + '/' + id);
+    return this.http.get(this.baseUrl + 'api/banner' + '/' + id);
   }
 
   updateById(id, data): Observable<any> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.put(this.baseLocal + 'api/banner' + '/' + id, data, httpOptions);
+    return this.http.put(this.baseUrl + 'api/banner' + '/' + id, data, httpOptions);
+  }
+
+  deleteById(id): Observable<any> {
+    return this.http.delete(this.baseUrl + 'api/banner' + '/' + id);
   }
 
  

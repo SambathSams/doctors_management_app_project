@@ -37,6 +37,7 @@ import { EditDoctorComponent } from './components/master/doctor/edit-doctor/edit
 import { BannerComponent } from './components/master/banner/banner.component';
 import { AddBannerComponent } from './components/master/banner/add-banner/add-banner.component';
 import { EditBannerComponent } from './components/master/banner/edit-banner/edit-banner.component';
+import { ViewBannerComponent } from './components/master/banner/view-banner/view-banner.component';
 
 import { AddReceptionistComponent } from './components/master/receptionist/add-receptionist/add-receptionist.component';
 import { EditReceptionistComponent } from './components/master/receptionist/edit-receptionist/edit-receptionist.component';
@@ -63,7 +64,7 @@ const routes: Routes = [
     {path: 'banner', children : [
       {path: '', component: BannerComponent},
       {path: 'add', component: AddBannerComponent},
-      // {path: 'view/:id', component: ViewDoctorComponent},
+      {path: 'view/:id', component: ViewBannerComponent},
       {path: 'edit/:id', component: EditBannerComponent}
     ]},
     {path: 'doctor', children : [

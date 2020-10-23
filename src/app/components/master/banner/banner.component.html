@@ -38,8 +38,8 @@
                                         <td>{{getOne.banner_category}}</td>
                                         <td>{{getOne.createdAt}}</td>
                                         <td>
-                                            <p *ngIf="getOne.active == true">Active</p>
-                                            <p *ngIf="getOne.active == false">Inactive</p>
+                                            <p *ngIf="getOne.is_active == true">Active</p>
+                                            <p *ngIf="getOne.is_active == false">Inactive</p>
                                         </td>
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action">

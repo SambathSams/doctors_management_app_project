@@ -42,9 +42,9 @@ export class BannerComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   deleteOne(id) {
-    // this.service.deleteById(id).subscribe(res => {
-    //   this.getId = undefined;
-    // });
+    this.service.deleteById(id).subscribe(res => {
+      this.getId = undefined;
+    });
     this.getAll.splice(this.index,1);
   }
 

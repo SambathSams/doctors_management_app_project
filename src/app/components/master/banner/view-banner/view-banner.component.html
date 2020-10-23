@@ -3,16 +3,16 @@
     <app-sidebar></app-sidebar>
 
     <div class="page-wrapper">
-        <h2>Doctor Data</h2>
+        <h2>Banner Management</h2>
         <div *ngIf="undefined === getData">Loading...</div>
         <div *ngIf="undefined !== getData">
         <ul>
             <li>ID : {{getData._id}}</li>
-            <li>Doctor Name : {{getData.doctorName}}</li>
-            <li>Email : {{getData.email}}</li>
-            <li>Password : {{getData.password}}</li>
-            <li>Contact Number : {{getData.contactNumber}}</li>
-            <li>Status : {{getData.active}}</li>
+            <li>Banner Title : {{getData.banner_title}}</li>
+            <li>Banner Category : {{getData.banner_category}}</li>
+            <!-- <li>Password : {{getData.password}}</li>
+            <li>Contact Number : {{getData.contactNumber}}</li> -->
+            <li>Status : {{getData.is_active}}</li>
             <li>Created On : {{getData.createdAt | date:'medium'}}</li>
             <li>Updated On : {{getData.updatedAt | date:'medium'}}</li>
         </ul>
